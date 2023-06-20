@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/Authcontext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -18,9 +18,6 @@ export const Login = () => {
     loginHandler(username, password);
     console.log(username, password, token);
   };
-  const loginHandler1 = () => {
-    navigate("/");
-  };
 
   return (
     <div>
@@ -35,10 +32,12 @@ export const Login = () => {
           <input type="text" onChange={handlePassword} />
         </label>
         <br />
-        <button type="submit" onClick={loginHandler1}>
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
+      <button>Guest login</button>
+      <NavLink to="/signup">
+        <a>Signup</a>
+      </NavLink>
     </div>
   );
 };

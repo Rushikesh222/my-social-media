@@ -6,9 +6,9 @@ const loginService = async (username, password) =>
     password: password,
   });
 
-const signupService = async (firstName, lastName, email, password) =>
+const signupService = async (firstName, lastName, username, password) =>
   await axios.post("/api/auth/signup", {
-    email: email,
+    username: username,
     password: password,
     firstName: firstName,
     lastName: lastName,

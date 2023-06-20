@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { UserFeed } from "./Page/User-Feed/Userfeed";
 import { Login } from "./Page/Login/Login";
 import { RequiresAuth } from "./Component/RequiredAuth";
+import { SignUp } from "./Page/Signup/Signup";
 
 function App() {
   return (
@@ -11,8 +12,10 @@ function App() {
       <Routes>
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
         <Route
-          path="/"
+          path="/feed"
           element={
             <RequiresAuth>
               <UserFeed />

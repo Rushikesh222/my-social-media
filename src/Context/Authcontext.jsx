@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { loginService, signupService } from "../service/Authservice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -10,27 +10,33 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token);
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
 
-  // const signupHandler = async () => {
-  //   try {
-  //     const response = await signupService();
+  const signupHandler = async (username, password, firstname, lastName) => {
+    try {
+      const response = await signupService(
+        username,
+        password,
+        firstname,
+        lastName
+      );
 
-  //     const {
-  //       status,
-  //       data: { createdUser, encodedToken },
-  //     } = response;
-  //     if (status === 200 || status === 201) {
-  //       localStorage.setItem(
-  //         "loginDetails",
-  //         JSON.stringify({ user: createdUser, token: encodedToken })
-  //       );
-  //       setToken(encodedToken);
-  //       setCurrentUser(createdUser);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("there is error in signing you up");
-  //   }
-  // };
+      const {
+        status,
+        data: { createdUser, encodedToken },
+      } = response;
+      if (status === 200 || status === 201) {
+        localStorage.setItem(
+          "loginDetails",
+          JSON.stringify({ user: createdUser, token: encodedToken })
+        );
+        setToken(encodedToken);
+        setCurrentUser(createdUser);
+        navigate(location?.state?.from?.pathname ?? "/feed", { replace: true });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("there is error in signing you up");
+    }
+  };
 
   const loginHandler = async (username, password) => {
     try {
@@ -50,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         toast.success(`Welcome back, ${foundUser.firstName}!`, {
           icon: "👋",
         });
-        navigate(location?.state?.from?.pathname ?? "/");
+        navigate(location?.state?.from?.pathname ?? "/feed", { replace: true });
       }
     } catch (error) {
       console.error(error);
@@ -58,10 +64,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {}, []);
-
   return (
-    <AuthContext.Provider value={{ token, currentUser, loginHandler }}>
+    <AuthContext.Provider
+      value={{ signupHandler, token, currentUser, loginHandler }}
+    >
       {children}
     </AuthContext.Provider>
   );

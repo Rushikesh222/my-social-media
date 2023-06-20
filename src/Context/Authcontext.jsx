@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         toast.success(`Welcome back, ${foundUser.firstName}!`, {
           icon: "👋",
         });
-        navigate(location?.state?.from?.pathname || "/", { replace: true });
+        navigate(location?.state?.from?.pathname ?? "/");
       }
     } catch (error) {
       console.error(error);

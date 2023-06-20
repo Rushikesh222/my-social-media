@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/mockman" element={<Mockman />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/"
           element={

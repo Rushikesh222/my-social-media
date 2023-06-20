@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Mockman from "mockman-js";
+import { Routes, Route } from "react-router-dom";
+import { UserFeed } from "./Page/User-Feed/Userfeed";
+import { Login } from "./Page/Login/Login";
+import { RequiresAuth } from "./Component/RequiredAuth";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/mockman" element={<Mockman />} />
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <RequiresAuth>
+              <UserFeed />
+            </RequiresAuth>
+          }
+        />
+      </Routes>
     </div>
   );
 }

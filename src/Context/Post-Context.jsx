@@ -2,9 +2,10 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./Authcontext";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { postReducer } from "../Reducer/post-reducer";
 
 const PostContext = createContext();
-export const PostProvider = ({ childern }) => {
+export const PostProvider = ({ children }) => {
   const initialState = {
     postLoading: false,
     post: [],
@@ -24,7 +25,7 @@ export const PostProvider = ({ childern }) => {
         postDispatch({ type: "GET_POST", payload: data?.posts });
         postDispatch({ type: "POST_LOADING", payload: false });
       }
-    } catch (error) {
+    } catch (e) {
       toast.error(e.response.data.errors[0]);
     }
   };
@@ -39,7 +40,7 @@ export const PostProvider = ({ childern }) => {
         postDispatch({ type: "USER_POST", payload: data?.posts });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -55,7 +56,7 @@ export const PostProvider = ({ childern }) => {
         return data.posts.find((post) => post._id === postId);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const dislikePost = async (postId) => {
@@ -69,7 +70,7 @@ export const PostProvider = ({ childern }) => {
         postDispatch({ type: "GET_POST", payload: data?.posts });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const deletePost = async (postId) => {
@@ -83,7 +84,7 @@ export const PostProvider = ({ childern }) => {
         postDispatch({ type: "GET_POST", payload: data?.posts });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   useEffect(() => {
@@ -96,9 +97,10 @@ export const PostProvider = ({ childern }) => {
     <PostContext.Provider
       value={{ postState, getUserPost, likePost, dislikePost, deletePost }}
     >
-      {childern}
+      {children}
     </PostContext.Provider>
   );
 };
 
 export const usePost = () => useContext(PostContext);
+console.log(usePost);

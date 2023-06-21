@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./Authcontext";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { postReducer } from "../Reducer/post-reducer";
 
 const PostContext = createContext();
@@ -103,4 +103,3 @@ export const PostProvider = ({ children }) => {
 };
 
 export const usePost = () => useContext(PostContext);
-console.log(usePost);

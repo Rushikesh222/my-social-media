@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { DisplayPost } from "../../Component/DisplayPost";
-import { AuthContext } from "../../Context/Authcontext";
+
 import { usePost } from "../../Context/Post-Context";
 import { useUser } from "../../Context/user-context";
 import { Header } from "../../Header/Header";
+import { RightSide } from "../../Component/RightSide";
+import { useAuthContext } from "../../Context/Authcontext";
 
 export const Home = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuthContext();
   const { postState } = usePost();
   const { userState } = useUser();
 
@@ -16,6 +18,7 @@ export const Home = () => {
     const followUsernameArr = loggedInUser?.following?.map(
       (username) => username
     );
+    return followUsernameArr?.includes(username);
   });
   userFeed = [
     ...userFeed,
@@ -35,6 +38,7 @@ export const Home = () => {
           <DisplayPost userPost={posts} />
         </div>
       ))}
+      <RightSide />
     </div>
   );
 };

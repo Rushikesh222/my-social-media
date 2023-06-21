@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { AuthContext } from "./Authcontext";
+import { useAuthContext } from "../Context/Authcontext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { postReducer } from "../Reducer/post-reducer";
@@ -12,7 +12,7 @@ export const PostProvider = ({ children }) => {
     userPost: [],
   };
   const [postState, postDispatch] = useReducer(postReducer, initialState);
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthContext();
 
   const getPostData = async () => {
     try {

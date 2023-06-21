@@ -1,11 +1,11 @@
 import axios from "axios";
-import { AuthContext } from "./Authcontext";
+import { useAuthContext } from "../Context/Authcontext";
 import { bookmarkReducer } from "../Reducer/bookmark-reducer";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
 const BookmarkContext = createContext();
 export const BookmarkProvider = ({ children }) => {
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthContext();
   const initialState = {
     isBookmarkLoading: false,
     bookmark: [],

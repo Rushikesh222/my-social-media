@@ -5,11 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthContext, AuthProvider } from "./Context/Authcontext";
+import { AuthProvider } from "./Context/Authcontext";
 import { PostProvider } from "./Context/Post-Context";
 import { BookmarkProvider } from "./Context/bookmark-context";
 import { UserProvider } from "./Context/user-context";
-export { AuthContext };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

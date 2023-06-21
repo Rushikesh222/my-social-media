@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { loginService, signupService } from "../service/Authservice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const localStorageToken = JSON.parse(localStorage.getItem("loginDetails"));
   const [token, setToken] = useState(localStorageToken?.token);
-  const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
+  const [currentUser, setCurrentUser] = useState(localStorageToken?.users);
 
   const signupHandler = async (username, password, firstname, lastName) => {
     try {
@@ -38,14 +38,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginHandler = async (username, password) => {
+  const loginHandler = async (userLoginDetails) => {
     try {
-      const response = await loginService(username, password);
+      const response = await loginService(
+        userLoginDetails.username,
+        userLoginDetails.password
+      );
       const {
         status,
         data: { foundUser, encodedToken },
       } = response;
-      console.log(foundUser, encodedToken);
+
       if (status === 200 || status === 201) {
         localStorage.setItem(
           "loginDetails",
@@ -83,3 +86,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+export const useAuthContext = () => useContext(AuthContext);

@@ -1,12 +1,11 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../../Context/Authcontext";
-
+import { useAuthContext } from "../../Context/Authcontext";
 export function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const { signupHandler, token } = useContext(AuthContext);
+  const { signupHandler, token } = useAuthContext();
   const handleusername = (event) => {
     setUsername(event.target.value);
   };

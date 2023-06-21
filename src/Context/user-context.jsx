@@ -1,6 +1,6 @@
 import axios from "axios";
 import { userReducer } from "../Reducer/user-reducer";
-import { AuthContext } from "./Authcontext";
+import { useAuthContext } from "../Context/Authcontext";
 import { toast } from "react-hot-toast";
 import {
   createContext,
@@ -12,7 +12,7 @@ import {
 
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthContext();
   const [userState, userDispatch] = useReducer(userReducer, []);
   const [userLoading, setUserLoading] = useState(false);
 
@@ -25,6 +25,7 @@ export const UserProvider = ({ children }) => {
       });
       if (status === 200 || status === 201) {
         userDispatch({ type: "GET_USER", payload: data?.users });
+        console.log(data?.users);
         setUserLoading(false);
       }
     } catch (e) {
@@ -39,8 +40,8 @@ export const UserProvider = ({ children }) => {
         headers: { authorization: token },
       });
       if (status === 200 || status === 201) {
-        userDispatch({ type: "UPDATE-USERDATA", payload: data?.followerUser });
-        userDispatch({ type: "UPDATE-USERDATA", payload: data?.users });
+        userDispatch({ type: "UPDATE_USERDATA", payload: data?.followUser });
+        userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
       }
     } catch (e) {
       console.error(e);
@@ -54,8 +55,9 @@ export const UserProvider = ({ children }) => {
         headers: { authorization: token },
       });
       if (status === 200 || status === 201) {
-        userDispatch({ type: "UPDATE-USERDATA", payload: data?.followerUser });
-        userDispatch({ type: "UPDATE-USERDATA", payload: data?.users });
+        console.log(data);
+        userDispatch({ type: "UPDATE_USERDATA", payload: data?.followUser });
+        userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
       }
     } catch (e) {
       console.error(e);

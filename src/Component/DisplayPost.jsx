@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Context/Authcontext";
 import { usePost } from "../Context/Post-Context";
 import { useNavigate } from "react-router-dom";
 import { useBookmark } from "../Context/bookmark-context";
+import { useAuthContext } from "../Context/Authcontext";
 
 export const DisplayPost = ({ userPost }) => {
   const { _id, content, Image, username, createdAt } = userPost;
-  console.log(userPost);
+
   const navigate = useNavigate();
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthContext();
   const { addBookmarkData, removeBookmarkData, bookmarkState } = useBookmark();
   const { likePost, dislikePost, deletePost } = usePost();
   const [userDetails, setUserDetails] = useState({});

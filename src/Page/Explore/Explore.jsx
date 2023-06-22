@@ -10,7 +10,7 @@ export function Explore() {
   //   (data) => data.username !== currentUser
   // );
   const { postState } = usePost();
-  console.log(postState);
+
   return (
     <div>
       <Header />

@@ -7,6 +7,8 @@ import { RequiresAuth } from "./Component/RequiredAuth";
 import { SignUp } from "./Page/Signup/Signup";
 import { Bookmark } from "./Page/Bookmark/Bookmark";
 import { Home } from "./Page/Home/Home";
+import { Profile } from "./Page/Profile/Profile";
+import { PostDetail } from "./Page/PostDetails/PostDetail";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/details/:postId" element={<PostDetail />} />
 
         <Route
           path="/feed"

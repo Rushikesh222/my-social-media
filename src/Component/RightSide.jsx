@@ -7,13 +7,12 @@ import { useAuthContext } from "../Context/Authcontext";
 export const RightSide = () => {
   const { getUserPost } = usePost();
   const { userState, unfollowerUser, followerUser, userLoading } = useUser();
-  const { currentUser, t } = useAuthContext();
+  const { currentUser } = useAuthContext();
   const navigate = useNavigate();
   const isFollowed = (userId) =>
     userState
       ?.find((user) => user._id === userId)
       ?.followers.some((user) => user._id === currentUser?._id);
-  console.log(currentUser);
   return (
     <div>
       <h1>Suggestion for you</h1>
@@ -27,7 +26,7 @@ export const RightSide = () => {
                 className="follower"
                 onClick={() => {
                   getUserPost(user?.username);
-                  navigate();
+                  navigate(`/profile/${user?._id}`);
                 }}
               >
                 <img

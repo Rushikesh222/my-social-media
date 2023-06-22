@@ -25,7 +25,6 @@ export const UserProvider = ({ children }) => {
       });
       if (status === 200 || status === 201) {
         userDispatch({ type: "GET_USER", payload: data?.users });
-        console.log(data?.users);
         setUserLoading(false);
       }
     } catch (e) {

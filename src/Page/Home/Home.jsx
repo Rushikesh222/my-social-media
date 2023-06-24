@@ -6,7 +6,7 @@ import { useUser } from "../../Context/user-context";
 import { Header } from "../../Header/Header";
 import { RightSide } from "../../Component/RightSide";
 import { useAuthContext } from "../../Context/Authcontext";
-
+import "./Home.css";
 export const Home = () => {
   const { currentUser } = useAuthContext();
   const { postState } = usePost();
@@ -29,16 +29,22 @@ export const Home = () => {
   ];
 
   return (
-    <div>
-      <Header />
-      <h1>Home Page</h1>
+    <div className="home-container">
+      <div className="home-header-container">
+        <Header />
+      </div>
+      <div className="home-displaypost-container">
+        <h1>Home Page</h1>
 
-      {userFeed?.map((posts) => (
-        <div key={posts._id}>
-          <DisplayPost userPost={posts} />
-        </div>
-      ))}
-      <RightSide />
+        {userFeed?.map((posts) => (
+          <div key={posts._id}>
+            <DisplayPost userPost={posts} />
+          </div>
+        ))}
+      </div>
+      <div className="home-rightside-container">
+        <RightSide />
+      </div>
     </div>
   );
 };

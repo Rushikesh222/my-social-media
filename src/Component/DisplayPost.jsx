@@ -35,14 +35,6 @@ export const DisplayPost = ({ userPost }) => {
   }, [username, userState]);
   return (
     <div key={_id} className="HomePost">
-      {/* <h3>{username}</h3>
-      <img src={Image}></img>
-      <p>{content}</p>
-      <p className="text-xs">{` ${new Date(createdAt)
-        .toDateString()
-        .split(" ")
-        .slice(1, 4)
-        .join(" ")}`}</p> */}
       <div onClick={() => navigate(`/profile/${_id}`)}>
         <img src={currentUser?.avatarUrl} alt="avatar" />
         <h1>{`${userDetails?.firstName}${userDetails?.lastName}`}</h1>
@@ -87,18 +79,6 @@ export const DisplayPost = ({ userPost }) => {
           {likeByUser ? <button>liked</button> : <button>liked</button>}
         </div>
       </div>
-      {/* <div
-        className="cusor-pointer"
-        onClick={() => navigate(`/profile/${username}`)}
-      >
-        <img src={userDetails?.avatarUrl} alt="avatar" className="avatar" />
-        <h1>{`${userDetails?.firstName} ${userDetails?.lastName}`}</h1>
-        <p className="text-xs">{` ${new Date(createdAt)
-          .toDateString()
-          .split(" ")
-          .slice(1, 4)
-          .join(" ")}`}</p>
-      </div> */}
     </div>
   );
 };

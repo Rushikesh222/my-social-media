@@ -1,0 +1,42 @@
+.display-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.display-profile {
+  display: flex;
+  align-items: flex-start;
+}
+.display-details {
+  width: 600px;
+  height: 500px;
+}
+.display-image-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 2px white solid;
+}
+.display-name-avatar {
+  font-size: 16px;
+}
+.display-date {
+  margin-left: -92px;
+  margin-top: 31px;
+}
+.content-image {
+  width: 539px;
+  height: 322px;
+}
+.display-icon {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.like-button {
+  /* margin-bottom: 17px; */
+}

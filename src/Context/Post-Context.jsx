@@ -12,8 +12,8 @@ export const PostProvider = ({ children }) => {
     userPost: [],
   };
   const [postState, postDispatch] = useReducer(postReducer, initialState);
-  const { token } = useAuthContext();
-
+  const { token, currentUser } = useAuthContext();
+  console.log(token);
   const getPostData = async () => {
     try {
       postDispatch({ type: "POST_LOADING", payload: true });
@@ -45,6 +45,7 @@ export const PostProvider = ({ children }) => {
   };
 
   const likePost = async (postId) => {
+    console.log(postId);
     try {
       const { data, status } = await axios({
         method: "POST",
@@ -53,19 +54,23 @@ export const PostProvider = ({ children }) => {
       });
       if (status === 200 || status === 201) {
         postDispatch({ type: "GET_POST", payload: data?.posts });
+        postDispatch({ type: "GET_USER", payload: data?.posts });
         return data.posts.find((post) => post._id === postId);
       }
     } catch (e) {
       console.error(e);
     }
   };
+
   const dislikePost = async (postId) => {
+    console.log(postId);
     try {
       const { data, status } = await axios({
         method: "POST",
         url: `/api/posts/dislike/${postId}`,
         headers: { authorization: token },
       });
+
       if (status === 200 || status === 201) {
         postDispatch({ type: "GET_POST", payload: data?.posts });
       }
@@ -87,15 +92,34 @@ export const PostProvider = ({ children }) => {
       console.error(e);
     }
   };
+  console.log(currentUser, initialState.post);
+  const islikehandler = (postId) => {
+    return initialState.post
+      .find((items) => items?._id === postId)
+      .likes?.likedBy?.find(
+        ({ username }) => username === currentUser?.username
+      )
+      ? true
+      : false;
+  };
   useEffect(() => {
     if (token) {
       getPostData();
     }
   }, [token]);
-
+  useEffect(() => {
+    getPostData();
+  }, []);
   return (
     <PostContext.Provider
-      value={{ postState, getUserPost, likePost, dislikePost, deletePost }}
+      value={{
+        postState,
+        islikehandler,
+        getUserPost,
+        likePost,
+        dislikePost,
+        deletePost,
+      }}
     >
       {children}
     </PostContext.Provider>

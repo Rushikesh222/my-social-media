@@ -87,11 +87,10 @@ export const DisplayPost = ({ userPost }) => {
           </div>
           <p>{likes?.likeCount}</p>
         </div>
-        {isModalvisible && usePost ? (
+        {usePost ? (
           <DeletePost
             deletePost={() => {
               deletePost(_id);
-              setIsModalVisible(false);
             }}
           />
         ) : null}

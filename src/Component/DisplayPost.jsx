@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePost } from "../Context/Post-Context";
 import { useNavigate } from "react-router-dom";
 import { useBookmark } from "../Context/bookmark-context";
@@ -8,37 +8,36 @@ import { useUser } from "../Context/user-context";
 import "./DisplayPost.css";
 
 export const DisplayPost = ({ userPost }) => {
-  const { _id, content, Image, username, createdAt } = userPost;
+  const { _id, content, Image, username, likes, createdAt } = userPost;
 
   const navigate = useNavigate();
 
   const { userState } = useUser();
   const { currentUser } = useAuthContext();
   const { addBookmarkData, removeBookmarkData, bookmarkState } = useBookmark();
-  const { likePost, dislikePost, deletePost, islikehandler } = usePost();
+  const { likePost, dislikePost, deletePost } = usePost();
   const [userDetails, setUserDetails] = useState({});
   const [isModalvisible, setIsModalVisible] = useState(false);
 
+  useEffect(() => {
+    setUserDetails(userState?.find((user) => user.username === username));
+  }, [username, userState]);
   const bookmarkedByUser = () =>
-    bookmarkState?.bookmark?.filter((postId) => postId === _id)?.length !== 0;
-
-  const likeByUser = () => {
-    return userPost?.likes?.likedBy?.find((user) =>
-      user._id === currentUser?._id ? true : false
-    );
-  };
-  console.log(islikehandler(_id));
+    bookmarkState?.bookmark?.filter((postId) => postId._id === _id)?.length !==
+    0;
+  // console.log(bookmarkedByUser(), bookmarkState);
+  const likeByUser = () =>
+    userPost?.likes?.likedBy?.filter((user) => user._id === currentUser?._id)
+      .length !== 0;
 
   const toggleLikeHandler = () => {
-    if (islikehandler(_id)) {
+    if (likeByUser()) {
       dislikePost(_id);
     } else {
       likePost(_id);
     }
   };
-  useEffect(() => {
-    setUserDetails(userState?.find((user) => user.username === username));
-  }, [username, userState]);
+
   return (
     <div className="display-container">
       <div key={_id} className="display-details">
@@ -69,24 +68,24 @@ export const DisplayPost = ({ userPost }) => {
         </div>
         <div className="display-icon">
           <div className="bookmark-button">
-            {" "}
             {bookmarkedByUser() ? (
-              <p onClick={() => removeBookmarkData(_id)}>
-                <i class="far fa-bookmark"></i>
-              </p>
-            ) : (
-              <p onClick={() => addBookmarkData(_id)}>
+              <div onClick={() => removeBookmarkData(_id)}>
                 <i class="fas fa-bookmark"></i>
-              </p>
+              </div>
+            ) : (
+              <div onClick={() => addBookmarkData(_id)}>
+                <i class="far fa-bookmark"></i>
+              </div>
             )}
           </div>
           <div className="like-button" onClick={toggleLikeHandler}>
-            {islikehandler(_id) ? (
-              <i class="far fa-heart"></i>
+            {likeByUser() ? (
+              <i class="fas fa-heart" style={{ color: "#ff6347" }}></i>
             ) : (
-              <i class="fas fa-heart"></i>
+              <i class="far fa-heart"></i>
             )}
           </div>
+          <p>{likes?.likeCount}</p>
         </div>
         {isModalvisible && usePost ? (
           <DeletePost

@@ -48,11 +48,12 @@ export const BookmarkProvider = ({ children }) => {
     }
   };
   const removeBookmarkData = async (postId) => {
+    console.log(postId);
     try {
       bookmarkDispatch({ type: "BOOKMARK_LOADING", payload: true });
       const { data, status } = await axios({
         method: "POST",
-        url: `/api/users/remove-bookmar/${postId}`,
+        url: `/api/users/remove-bookmark/${postId}`,
         headers: { authorization: token },
       });
       if (status === 200 || status === 201) {

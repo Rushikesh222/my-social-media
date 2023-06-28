@@ -1,9 +1,14 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { useAuthContext } from "../Context/Authcontext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { postReducer } from "../Reducer/post-reducer";
-
 const PostContext = createContext();
 export const PostProvider = ({ children }) => {
   const initialState = {
@@ -12,7 +17,8 @@ export const PostProvider = ({ children }) => {
     userPost: [],
   };
   const [postState, postDispatch] = useReducer(postReducer, initialState);
-  const { token, currentUser } = useAuthContext();
+  const { token } = useAuthContext();
+  const [postText, setPostText] = useState("");
   console.log(token);
   const getPostData = async () => {
     try {
@@ -22,6 +28,7 @@ export const PostProvider = ({ children }) => {
         url: "/api/posts",
       });
       if (status === 200 || status === 201) {
+        console.log(data);
         postDispatch({ type: "GET_POST", payload: data?.posts });
         postDispatch({ type: "POST_LOADING", payload: false });
       }
@@ -41,6 +48,26 @@ export const PostProvider = ({ children }) => {
       }
     } catch (e) {
       console.error(e);
+    }
+  };
+  const createPost = async (postText) => {
+    try {
+      postDispatch({ type: "POST_LOADING", payload: true });
+      const { data, status } = await axios({
+        method: "POST",
+        url: "/api/posts",
+        headers: { authorization: token },
+        data: {
+          postData: { content: postText },
+        },
+      });
+
+      if (status === 201 || status === 200) {
+        postDispatch({ type: "POST_LOADING", payload: false });
+        postDispatch({ type: "USER_POST", payload: data?.posts });
+      }
+    } catch (error) {
+      console.error(error, "here");
     }
   };
 
@@ -63,7 +90,6 @@ export const PostProvider = ({ children }) => {
   };
 
   const dislikePost = async (postId) => {
-    console.log(postId);
     try {
       const { data, status } = await axios({
         method: "POST",
@@ -92,16 +118,7 @@ export const PostProvider = ({ children }) => {
       console.error(e);
     }
   };
-  console.log(currentUser, initialState.post);
-  const islikehandler = (postId) => {
-    return initialState.post
-      .find((items) => items?._id === postId)
-      .likes?.likedBy?.find(
-        ({ username }) => username === currentUser?.username
-      )
-      ? true
-      : false;
-  };
+
   useEffect(() => {
     if (token) {
       getPostData();
@@ -114,11 +131,13 @@ export const PostProvider = ({ children }) => {
     <PostContext.Provider
       value={{
         postState,
-        islikehandler,
+        createPost,
         getUserPost,
         likePost,
         dislikePost,
         deletePost,
+        postText,
+        setPostText,
       }}
     >
       {children}

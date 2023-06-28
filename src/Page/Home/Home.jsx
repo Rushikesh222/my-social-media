@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { DisplayPost } from "../../Component/DisplayPost";
 
 import { usePost } from "../../Context/Post-Context";
@@ -7,6 +6,7 @@ import { Header } from "../../Header/Header";
 import { RightSide } from "../../Component/RightSide";
 import { useAuthContext } from "../../Context/Authcontext";
 import "./Home.css";
+import { NewPost } from "../../Component/NewPost";
 export const Home = () => {
   const { currentUser } = useAuthContext();
   const { postState } = usePost();
@@ -33,9 +33,10 @@ export const Home = () => {
       <div className="home-header-container">
         <Header />
       </div>
+
       <div className="home-displaypost-container">
         <h1>Home Page</h1>
-
+        <NewPost />
         {userFeed?.map((posts) => (
           <div key={posts._id}>
             <DisplayPost userPost={posts} />

@@ -5,6 +5,10 @@ import { Header } from "../../Header/Header";
 export const Bookmark = () => {
   const { bookmarkState } = useBookmark();
   const { postState } = usePost();
+
+  console.log(bookmarkState, postState);
+
+  // console.log(postState.post.map((items)=>items._id).find(()=>));
   return (
     <div>
       <Header />
@@ -18,14 +22,16 @@ export const Bookmark = () => {
           ) : (
             <div>
               {bookmarkState?.bookmark?.map((postId) => {
-                <div>
-                  <h1>unbooked</h1>
-                  <DisplayPost
-                    userPost={postState?.post?.find(
-                      (post) => post._id === postId
-                    )}
-                  />
-                </div>;
+                const bookmarkdata = postState?.post?.find(
+                  (post) => post?._id === postId._id
+                );
+                console.log(postId, bookmarkdata);
+
+                return (
+                  <div>
+                    <DisplayPost userPost={bookmarkdata} />
+                  </div>
+                );
               })}
             </div>
           )}

@@ -1,16 +1,6 @@
 .home-container {
-  display: grid;
-  grid-template-columns: 200px, 250px;
-  grid-template-rows: minmax(150px, auto);
-  grid-gap: 20px;
-  grid-template-areas: "header header" "displaypost displaypost" "rightnav rightnav";
-}
-.home-header-container {
-  grid-area: header;
-}
-.home-displaypost-container {
-  grid-area: displaypost;
-}
-.home-rightside-container {
-  grid-area: rightnav;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  border: 2px solid red;
 }

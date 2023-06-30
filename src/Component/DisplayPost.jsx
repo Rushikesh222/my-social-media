@@ -5,11 +5,12 @@ import { useBookmark } from "../Context/bookmark-context";
 import { useAuthContext } from "../Context/Authcontext";
 import { DeletePost } from "./DeletePost";
 import { useUser } from "../Context/user-context";
+import { EditPost } from "./EditPost";
 import "./DisplayPost.css";
 
 export const DisplayPost = ({ userPost }) => {
   const { _id, content, Image, username, likes, createdAt } = userPost;
-
+  console.log(userPost);
   const navigate = useNavigate();
 
   const { userState } = useUser();
@@ -17,7 +18,8 @@ export const DisplayPost = ({ userPost }) => {
   const { addBookmarkData, removeBookmarkData, bookmarkState } = useBookmark();
   const { likePost, dislikePost, deletePost } = usePost();
   const [userDetails, setUserDetails] = useState({});
-  const [isModalvisible, setIsModalVisible] = useState(false);
+  // const [isModalvisible, setIsModalVisible] = useState(false);
+  const [showEditPost, setShowEditPost] = useState(false);
 
   useEffect(() => {
     setUserDetails(userState?.find((user) => user.username === username));
@@ -41,31 +43,58 @@ export const DisplayPost = ({ userPost }) => {
   return (
     <div className="display-container">
       <div key={_id} className="display-details">
-        <div
-          className="display-profile"
-          onClick={() => navigate(`/profile/${_id}`)}
-        >
-          <img
-            className="display-image-avatar"
-            src={currentUser?.avatarUrl}
-            alt="avatar"
-          />
-          <h1 className="display-name-avatar">{`${userDetails?.firstName}${userDetails?.lastName}`}</h1>
-          <p className="display-date">{` ${new Date(createdAt)
-            .toDateString()
-            .split(" ")
-            .slice(1, 4)
-            .join(" ")}`}</p>
-        </div>
-        <div
-          className="display-content"
-          onClick={() => navigate(`/details/${_id}`)}
-        >
+        {showEditPost && (
+          <EditPost userPost={userPost} setShowEditPost={setShowEditPost} />
+        )}
+
+        <div className="display_body">
+          <div className="display_header">
+            <div className="display_headerText">
+              <div
+                className="display_avatar "
+                onClick={() => navigate(`/profile/${_id}`)}
+              >
+                <img
+                  className="profile_image"
+                  src={currentUser?.avatarUrl}
+                  alt="avatar"
+                />
+              </div>
+              <h3>
+                {`${userDetails?.firstName}${userDetails?.lastName}`}
+                <span className="display_headerSpecial">
+                  <span class="material-symbols-outlined display_badge">
+                    verified
+                  </span>
+                  @{userDetails?.username}
+                  <p>{` ${new Date(createdAt)
+                    .toDateString()
+                    .split(" ")
+                    .slice(1, 4)
+                    .join(" ")}`}</p>
+                </span>
+              </h3>
+            </div>
+            <div className="display_HeaderDescription">
+              <p>{content}</p>
+            </div>
+          </div>
           {Image && (
-            <img className="content-image" src={Image} alt="uploaded" />
+            <img
+              onClick={() => navigate(`/details/${_id}`)}
+              src={Image}
+              alt="uploaded"
+              className="content_image"
+            />
           )}
-          <p className="contente-details">{content}</p>
+          <div className="display_footer">
+            <span class="material-symbols-outlined">repeat</span>
+            <span class="material-symbols-outlined">favorite</span>
+            <span class="material-symbols-outlined">bookmark</span>
+          </div>
         </div>
+
+        <div className="display-content"></div>
         <div className="display-icon">
           <div className="bookmark-button">
             {bookmarkedByUser() ? (

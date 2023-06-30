@@ -28,7 +28,6 @@ export const PostProvider = ({ children }) => {
         url: "/api/posts",
       });
       if (status === 200 || status === 201) {
-        console.log(data);
         postDispatch({ type: "GET_POST", payload: data?.posts });
         postDispatch({ type: "POST_LOADING", payload: false });
       }
@@ -118,6 +117,27 @@ export const PostProvider = ({ children }) => {
       console.error(e);
     }
   };
+  const editPostData = async (postId, postData) => {
+    try {
+      postDispatch({ type: "POST_LOADING", payload: true });
+      const { data, status } = await axios({
+        method: "POST",
+        url: `api/posts/edit/${postId}`,
+        headers: { authorization: token },
+        data: {
+          postData,
+        },
+      });
+
+      if (status === 201 || status === 200) {
+        console.log(data);
+        postDispatch({ type: "USER_POST", payload: data?.posts });
+        postDispatch({ type: "POST_LOADING", payload: false });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     if (token) {
@@ -138,6 +158,7 @@ export const PostProvider = ({ children }) => {
         deletePost,
         postText,
         setPostText,
+        editPostData,
       }}
     >
       {children}

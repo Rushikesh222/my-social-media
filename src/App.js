@@ -9,11 +9,13 @@ import { Bookmark } from "./Page/Bookmark/Bookmark";
 import { Home } from "./Page/Home/Home";
 import { Profile } from "./Page/Profile/Profile";
 import { PostDetail } from "./Page/PostDetails/PostDetail";
+import { LeftSide } from "./Component/LeftSide";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/leftbar" element={<LeftSide />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

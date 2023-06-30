@@ -1,0 +1,55 @@
+.Rightside_avatar img {
+  border-radius: 50%;
+  height: 40px;
+}
+.Rightside-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid green;
+}
+.rightside_headerText h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.Rightside_badge {
+  font-size: 14px;
+  color: var(--twitter-color);
+  margin-right: 5px;
+}
+.Rightside_headerSpecial {
+  font-size: 12px;
+  font-weight: 600;
+  color: gray;
+}
+.Rightside_buttonFollow button {
+  background-color: white;
+  border: 1px solid var(--twitter-color);
+  color: var(--twitter-color);
+  font-weight: 900;
+  border-radius: 30px;
+  width: 80px;
+  height: 40px;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: 40px;
+  margin-bottom: 15px;
+}
+.Rightside_buttonFollow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid chartreuse; */
+}
+/* .Rightside_body {
+  border-radius: 20px;
+  background-color: gray;
+} */
+
+.profile-body {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgb(190, 186, 186);
+}

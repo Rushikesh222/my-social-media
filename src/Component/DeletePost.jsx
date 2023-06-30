@@ -1,7 +1,8 @@
+import "./NewPost.css";
 export const DeletePost = ({ deletePost }) => {
   return (
-    <div>
-      <button onClick={deletePost}>Delete Post</button>
+    <div className="delete.post">
+      <span onClick={deletePost}>Delete</span>
     </div>
   );
 };

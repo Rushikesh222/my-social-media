@@ -2,36 +2,31 @@
   --twitter-color: #50b7f5;
   --twitter-background: #e6ecf0;
 }
-.tweetbox-input img {
+.editbox-input img {
   border-radius: 50%;
   height: 40px;
 }
-.tweetbox {
+.editbox {
   padding-bottom: 10px;
   border-bottom: 8px solid var(--twitter-background);
   padding-right: 10px;
 }
-.tweetbox form {
+.editbox form {
   display: flex;
   flex-direction: column;
 }
-.tweetbox-input {
+.editbox-input {
   display: flex;
   padding: 20px;
 }
-.tweetbox-input input {
+.editbox-input input {
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
   border: none;
   outline: none;
 }
-.tweetbox-button {
-  display: flex;
-  justify-content: end;
-  align-items: end;
-}
-.tweetBox_tweetButton {
+.editbox_submitbutton {
   background-color: var(--twitter-color);
   border: flex;
   color: white;
@@ -40,4 +35,20 @@
   width: 80px;
   height: 40px;
   margin-top: 20px;
+}
+.editbox_discardbutton {
+  background-color: var(--twitter-color);
+  border: flex;
+  color: white;
+  font-weight: 900;
+  border-radius: 30px;
+  width: 80px;
+  height: 40px;
+  margin-top: 20px;
+}
+.editbox-button {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  gap: 20px;
 }

@@ -16,15 +16,16 @@ export const NewPost = () => {
             placeholder="What's happening?"
           />
         </div>
-
-        <button
-          className="tweetBox_tweetButton"
-          onClick={() => {
-            createPost(postText);
-          }}
-        >
-          Tweet
-        </button>
+        <div className="tweetbox-button">
+          <button
+            className="tweetBox_tweetButton"
+            onClick={() => {
+              createPost(postText);
+            }}
+          >
+            Tweet
+          </button>
+        </div>
       </form>
     </div>
   );

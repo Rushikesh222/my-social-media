@@ -20,6 +20,7 @@ export const DisplayPost = ({ userPost }) => {
   const [userDetails, setUserDetails] = useState({});
   // const [isModalvisible, setIsModalVisible] = useState(false);
   const [showEditPost, setShowEditPost] = useState(false);
+  const [showOption, setShowOption] = useState(false);
 
   useEffect(() => {
     setUserDetails(userState?.find((user) => user.username === username));
@@ -74,6 +75,38 @@ export const DisplayPost = ({ userPost }) => {
                     .join(" ")}`}</p>
                 </span>
               </h3>
+              <div className="more_option">
+                <div
+                  style={
+                    showOption
+                      ? { visibility: "visible" }
+                      : { visibility: "hidden" }
+                  }
+                  className="option-frame"
+                >
+                  <div className="info">
+                    {usePost ? (
+                      <DeletePost
+                        deletePost={() => {
+                          deletePost(_id);
+                        }}
+                      />
+                    ) : null}
+                  </div>
+                  <div
+                    onClick={() => setShowEditPost(!showEditPost)}
+                    className="info"
+                  >
+                    Edit
+                  </div>
+                </div>
+                <span
+                  onClick={() => setShowOption(!showOption)}
+                  class="material-symbols-outlined post-option"
+                >
+                  more_vert
+                </span>
+              </div>
             </div>
             <div className="display_HeaderDescription">
               <p>{content}</p>
@@ -89,14 +122,16 @@ export const DisplayPost = ({ userPost }) => {
           )}
           <div className="display_footer">
             <span class="material-symbols-outlined">repeat</span>
-            <span class="material-symbols-outlined">favorite</span>
-            <span class="material-symbols-outlined">bookmark</span>
-          </div>
-        </div>
 
-        <div className="display-content"></div>
-        <div className="display-icon">
-          <div className="bookmark-button">
+            <div className="like-button" onClick={toggleLikeHandler}>
+              {likeByUser() ? (
+                <i class="fas fa-heart" style={{ color: "#ff6347" }}></i>
+              ) : (
+                <i class="far fa-heart"></i>
+              )}
+              <p>{likes?.likeCount}</p>
+            </div>
+
             {bookmarkedByUser() ? (
               <div onClick={() => removeBookmarkData(_id)}>
                 <i class="fas fa-bookmark"></i>
@@ -107,22 +142,7 @@ export const DisplayPost = ({ userPost }) => {
               </div>
             )}
           </div>
-          <div className="like-button" onClick={toggleLikeHandler}>
-            {likeByUser() ? (
-              <i class="fas fa-heart" style={{ color: "#ff6347" }}></i>
-            ) : (
-              <i class="far fa-heart"></i>
-            )}
-          </div>
-          <p>{likes?.likeCount}</p>
         </div>
-        {usePost ? (
-          <DeletePost
-            deletePost={() => {
-              deletePost(_id);
-            }}
-          />
-        ) : null}
       </div>
     </div>
   );

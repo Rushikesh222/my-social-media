@@ -10,7 +10,6 @@ import "./DisplayPost.css";
 
 export const DisplayPost = ({ userPost }) => {
   const { _id, content, Image, username, likes, createdAt } = userPost;
-  console.log(userPost);
   const navigate = useNavigate();
 
   const { userState } = useUser();
@@ -28,7 +27,7 @@ export const DisplayPost = ({ userPost }) => {
   const bookmarkedByUser = () =>
     bookmarkState?.bookmark?.filter((postId) => postId._id === _id)?.length !==
     0;
-  // console.log(bookmarkedByUser(), bookmarkState);
+
   const likeByUser = () =>
     userPost?.likes?.likedBy?.filter((user) => user._id === currentUser?._id)
       .length !== 0;

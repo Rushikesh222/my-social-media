@@ -12,9 +12,10 @@ import {
 
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const { token } = useAuthContext();
+  const { token, setCurrentUser, currentUser } = useAuthContext();
   const [userState, userDispatch] = useReducer(userReducer, []);
   const [userLoading, setUserLoading] = useState(false);
+  console.log(token);
 
   const getUserData = async () => {
     try {
@@ -63,13 +64,40 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const editProfileData = async (userData) => {
+    try {
+      const { data, status } = await axios({
+        method: "POST",
+        url: "/api/users/edit",
+        headers: { authorization: token },
+        data: {
+          userData,
+        },
+      });
+      console.log(status, data);
+      if (status === 201 || status === 200) {
+        setCurrentUser(data?.user);
+        userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
+        console.log(data, "log");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getUserData();
   }, []);
 
   return (
     <UserContext.Provider
-      value={{ userState, unfollowerUser, followerUser, userLoading }}
+      value={{
+        userState,
+        unfollowerUser,
+        followerUser,
+        userLoading,
+        editProfileData,
+      }}
     >
       {children}
     </UserContext.Provider>

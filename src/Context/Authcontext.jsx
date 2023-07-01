@@ -79,6 +79,7 @@ export const AuthProvider = ({ children }) => {
         signupHandler,
         token,
         currentUser,
+        setCurrentUser,
         loginHandler,
         handleUserLogout,
       }}

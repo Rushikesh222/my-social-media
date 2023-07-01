@@ -12,10 +12,11 @@ export const Home = () => {
   const { currentUser } = useAuthContext();
   const { postState } = usePost();
   const { userState } = useUser();
+  console.log(postState);
 
   let userFeed = [];
   const loggedInUser = userState?.find(({ _id }) => _id === currentUser?._id);
-  const followFeedPost = postState?.post?.filter(({ username }) => {
+  const followFeedPost = postState?.userPost?.filter(({ username }) => {
     const followUsernameArr = loggedInUser?.following?.map(
       (username) => username
     );
@@ -24,11 +25,11 @@ export const Home = () => {
   userFeed = [
     ...userFeed,
     ...followFeedPost,
-    ...postState?.post?.filter(
+    ...postState?.userPost?.filter(
       ({ username }) => username === loggedInUser?.username
     ),
   ];
-
+  console.log(userFeed);
   return (
     <div className="home-container">
       <LeftSide />
@@ -38,9 +39,9 @@ export const Home = () => {
           <h2>Home Page</h2>
         </div>
         <NewPost />
-        {userFeed?.map((posts) => (
-          <div key={posts._id}>
-            <DisplayPost userPost={posts} />
+        {userFeed?.map((post) => (
+          <div key={post._id}>
+            <DisplayPost userPost={post} />
           </div>
         ))}
       </div>

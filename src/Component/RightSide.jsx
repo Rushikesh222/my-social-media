@@ -29,11 +29,15 @@ export const RightSide = () => {
                   className="Rightside-follower"
                   onClick={() => {
                     getUserPost(user?.username);
-                    navigate(`/profile/${user?._id}`);
                   }}
                 >
                   <div className="Rightside_buttonFollow">
-                    <div className="Rightside_avatar">
+                    <div
+                      onClick={() => {
+                        navigate(`/profile/${user?._id}`);
+                      }}
+                      className="Rightside_avatar"
+                    >
                       <img src={user?.avatarUrl} alt="avatar" />
                     </div>
                     <div className="Rightside_headerText">

@@ -19,7 +19,8 @@ export const NewPost = () => {
         <div className="tweetbox-button">
           <button
             className="tweetBox_tweetButton"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               createPost(postText);
             }}
           >

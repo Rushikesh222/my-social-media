@@ -43,8 +43,9 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    Image: "https://cdn.britannica.com/26/162626-050-3534626F/Koala.jpg",
     username: "Aniket",
+    Image: "https://cdn.britannica.com/26/162626-050-3534626F/Koala.jpg",
+
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

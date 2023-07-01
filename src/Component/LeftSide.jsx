@@ -1,6 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../Context/Authcontext";
 import "./Leftside.css";
 export const LeftSide = () => {
+  const { currentUser } = useAuthContext();
+  const navigate = useNavigate();
   return (
     <div className="sidebar">
       <i className="fab fa-twitter"></i>
@@ -22,12 +25,17 @@ export const LeftSide = () => {
           <h2>Bookmarks</h2>
         </div>
       </NavLink>
-      <NavLink className="nav-link" to="/profile/:userId">
-        <div className="sidebarOption ">
-          <span class="material-symbols-outlined">person</span>
-          <h2>Profile</h2>
-        </div>
-      </NavLink>
+
+      <div
+        className="sidebarOption "
+        onClick={() => {
+          navigate(`/profile/${currentUser?._id}`);
+        }}
+      >
+        <span class="material-symbols-outlined">person</span>
+        <h2>Profile</h2>
+      </div>
+
       <button class="sidebar_tweet">Tweet</button>
     </div>
   );

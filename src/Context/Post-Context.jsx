@@ -19,7 +19,6 @@ export const PostProvider = ({ children }) => {
   const [postState, postDispatch] = useReducer(postReducer, initialState);
   const { token } = useAuthContext();
   const [postText, setPostText] = useState("");
-  console.log(token);
   const getPostData = async () => {
     try {
       postDispatch({ type: "POST_LOADING", payload: true });
@@ -60,7 +59,7 @@ export const PostProvider = ({ children }) => {
           postData: { content: postText },
         },
       });
-
+      console.log(data);
       if (status === 201 || status === 200) {
         postDispatch({ type: "POST_LOADING", payload: false });
         postDispatch({ type: "USER_POST", payload: data?.posts });

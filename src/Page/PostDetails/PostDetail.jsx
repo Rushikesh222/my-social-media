@@ -9,9 +9,9 @@ import { useParams } from "react-router-dom";
 import { DisplayPost } from "../../Component/DisplayPost";
 
 export const PostDetail = () => {
-  const { currentUser } = useAuthContext();
+  // const { currentUser } = useAuthContext();
   const { postState, getUserPost } = usePost();
-  const { userState } = useUser();
+  // const { userState } = useUser();
   const { postId } = useParams();
   const [postDetail, setpostDetails] = useState({});
   const [postloading, setPostLoading] = useState(false);

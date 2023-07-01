@@ -5,6 +5,7 @@ import { useUser } from "../../Context/user-context";
 import { useEffect, useState } from "react";
 import { RightSide } from "../../Component/RightSide";
 import { DisplayPost } from "../../Component/DisplayPost";
+import { EditProfile } from "../../Component/EditProfile";
 import axios from "axios";
 
 export const Profile = () => {
@@ -18,6 +19,9 @@ export const Profile = () => {
     show: false,
     type: "",
   });
+  const [showEditModal, setShowEditModal] = useState(
+    currentUser?._id === userId ? true : false
+  );
 
   const getUserDetails = async () => {
     try {
@@ -28,8 +32,8 @@ export const Profile = () => {
       });
       if (status === 200 || status === 201) {
         setUserData(data?.user);
-        setDataLoading(false);
         getUserPost(userId);
+        setDataLoading(false);
       }
     } catch (e) {
       console.error(e);
@@ -37,7 +41,7 @@ export const Profile = () => {
   };
   useEffect(() => {
     getUserDetails();
-  }, [userId, postState.post, userState]);
+  }, [userId, userState]);
 
   const isFollowed = (userId) => {
     userState
@@ -109,6 +113,13 @@ export const Profile = () => {
             }`}
         </p>
       </div>
+      {showEditModal && (
+        <EditProfile
+          userObj={userData}
+          setShowEditModal={setShowEditModal}
+          showEditModal={showEditModal}
+        />
+      )}
 
       <hr />
 

@@ -43,6 +43,7 @@ export const PostProvider = ({ children }) => {
       });
       if (status === 200 || status === 201) {
         postDispatch({ type: "USER_POST", payload: data?.posts });
+        postDispatch({ type: "POST_LOADING", payload: false });
       }
     } catch (e) {
       console.error(e);
@@ -62,7 +63,7 @@ export const PostProvider = ({ children }) => {
       console.log(data);
       if (status === 201 || status === 200) {
         postDispatch({ type: "POST_LOADING", payload: false });
-        postDispatch({ type: "USER_POST", payload: data?.posts });
+        postDispatch({ type: "GET_POST", payload: data?.posts });
       }
     } catch (error) {
       console.error(error, "here");

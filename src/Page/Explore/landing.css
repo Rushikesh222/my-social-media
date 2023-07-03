@@ -11,3 +11,9 @@
   width: 100%;
   height: 100%;
 }
+.display_explorepost {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 100%;
+}

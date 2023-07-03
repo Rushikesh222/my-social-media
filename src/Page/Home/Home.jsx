@@ -15,18 +15,17 @@ export const Home = () => {
   console.log(postState);
 
   let userFeed = [];
-  const loggedInUser = userState?.find(({ _id }) => _id === currentUser?._id);
-  const followFeedPost = postState?.userPost?.filter(({ username }) => {
-    const followUsernameArr = loggedInUser?.following?.map(
-      (username) => username
+  const followFeedPost = postState?.post?.filter(({ username }) => {
+    const followUsernameArr = currentUser?.user?.following?.map(
+      ({ username }) => username
     );
     return followUsernameArr?.includes(username);
   });
   userFeed = [
     ...userFeed,
     ...followFeedPost,
-    ...postState?.userPost?.filter(
-      ({ username }) => username === loggedInUser?.username
+    ...postState?.post?.filter(
+      ({ username }) => username === currentUser?.username
     ),
   ];
   console.log(userFeed);

@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
   const { token, setCurrentUser, currentUser } = useAuthContext();
   const [userState, userDispatch] = useReducer(userReducer, []);
   const [userLoading, setUserLoading] = useState(false);
-  console.log(token);
+  // console.log(token, currentUser);
 
   const getUserData = async () => {
     try {
@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
         method: "GET",
         url: "/api/users",
       });
+      console.log(data);
       if (status === 200 || status === 201) {
         userDispatch({ type: "GET_USER", payload: data?.users });
         setUserLoading(false);

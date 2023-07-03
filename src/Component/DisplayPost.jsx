@@ -52,11 +52,11 @@ export const DisplayPost = ({ userPost }) => {
             <div className="display_headerText">
               <div
                 className="display_avatar "
-                onClick={() => navigate(`/profile/${_id}`)}
+                onClick={() => navigate(`/profile/${username}`)}
               >
                 <img
                   className="profile_image"
-                  src={currentUser?.avatarUrl}
+                  src={userDetails?.avatarUrl}
                   alt="avatar"
                 />
               </div>

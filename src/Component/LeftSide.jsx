@@ -3,6 +3,7 @@ import { useAuthContext } from "../Context/Authcontext";
 import "./Leftside.css";
 export const LeftSide = () => {
   const { currentUser } = useAuthContext();
+  console.log(currentUser?.username);
   const navigate = useNavigate();
   return (
     <div className="sidebar">
@@ -29,7 +30,7 @@ export const LeftSide = () => {
       <div
         className="sidebarOption "
         onClick={() => {
-          navigate(`/profile/${currentUser?._id}`);
+          navigate(`/profile/${currentUser?.username}`);
         }}
       >
         <span class="material-symbols-outlined">person</span>

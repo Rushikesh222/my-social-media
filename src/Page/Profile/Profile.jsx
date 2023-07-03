@@ -7,20 +7,22 @@ import { RightSide } from "../../Component/RightSide";
 import { DisplayPost } from "../../Component/DisplayPost";
 import { EditProfile } from "../../Component/EditProfile";
 import axios from "axios";
-
+import "./profile.css";
 export const Profile = () => {
-  const { userId } = useParams();
+  const { username } = useParams();
   const { currentUser } = useAuthContext();
   const { postState, getUserPost } = usePost();
   const { userState, unfollowerUser, followerUser } = useUser();
   const [userData, setUserData] = useState({});
   const [dataLoading, setDataLoading] = useState(false);
+  const [showData, setShowData] = useState(false);
   const [showModal, setShowModal] = useState({
     show: false,
     type: "",
   });
-  const [showEditModal, setShowEditModal] = useState(
-    currentUser?._id === userId ? true : false
+
+  const [showEditModal, setShowEditModal] = useState(() =>
+    userData?.username === userState?.username ? true : false
   );
 
   const getUserDetails = async () => {
@@ -28,11 +30,11 @@ export const Profile = () => {
       setDataLoading(true);
       const { data, status } = await axios({
         method: "GET",
-        url: `/api/users/${userId}`,
+        url: `/api/users/${username}`,
       });
       if (status === 200 || status === 201) {
         setUserData(data?.user);
-        getUserPost(userId);
+        getUserPost(username);
         setDataLoading(false);
       }
     } catch (e) {
@@ -41,29 +43,29 @@ export const Profile = () => {
   };
   useEffect(() => {
     getUserDetails();
-  }, [userId, userState]);
+  }, [username, userState]);
 
-  const isFollowed = (userId) => {
+  const isFollowed = (username) => {
     userState
-      ?.find((user) => user._Id === userId)
+      ?.find((user) => user._Id === username)
       ?.followers.some((user) => user._id === currentUser?._id);
   };
 
   return (
-    <div>
+    <div className="profile-container">
       <h1 style={{ filter: showModal.show ? "blur(8px)" : "" }}>Profile</h1>
       {dataLoading ? (
-        <h1>profile user</h1>
+        <h1>Profile User</h1>
       ) : (
-        <div>
+        <div className="profile-text">
           {userData?.avatarUrl ? (
             <img src={userData?.avatarUrl} alt="avatar" />
           ) : (
             <div>{currentUser?.user?.firstName?.slice(0, 1)}</div>
           )}
-          <div>
+          <div className="profile-infotext">
             <h1>{`${userData?.firstName} ${userData?.lastName}`}</h1>
-            <p>{`${userData?.username}`}</p>
+            <p>@{`${userData?.username}`}</p>
           </div>
         </div>
       )}
@@ -84,8 +86,12 @@ export const Profile = () => {
           .join(" ")}`}
       </p>
 
-      <div>
-        <p>{postState?.userPost?.length === 1 ? "Post" : "Posts"}</p>
+      <div className="profile-contact">
+        <p>
+          {" "}
+          <h3>{postState?.userPost?.length}</h3>
+          {postState?.userPost?.length === 1 ? "Post" : "Posts"}
+        </p>
         <p
           onClick={() =>
             setShowModal((showModal) => ({
@@ -95,7 +101,8 @@ export const Profile = () => {
             }))
           }
         >
-          make
+          <h3>{userData?.followers?.length}</h3>
+
           {userData?.followers?.length === 1 ? "follower" : "followers"}
         </p>
         <p
@@ -107,13 +114,23 @@ export const Profile = () => {
             }))
           }
         >
-          {userData?.following?.length +
-            `${
-              userData?.following?.length === 1 ? " Following" : " Followings"
-            }`}
+          <h3>{userData?.following?.length}</h3>
+
+          {userData?.following?.length === 1 ? " Following" : " Followings"}
         </p>
       </div>
-      {showEditModal && (
+      {showEditModal ? (
+        <button
+          onClick={() => setShowData(!showData)}
+          className="profile-editbutton"
+        >
+          Edit Profile
+        </button>
+      ) : (
+        <p></p>
+      )}
+
+      {showData && (
         <EditProfile
           userObj={userData}
           setShowEditModal={setShowEditModal}

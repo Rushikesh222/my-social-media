@@ -21,7 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/profile/:username" element={<Profile />} />
         <Route path="/details/:postId" element={<PostDetail />} />
 
         <Route

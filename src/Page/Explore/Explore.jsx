@@ -13,15 +13,19 @@ export function Explore() {
   //   (data) => data.username !== currentUser
   // );
   const { postState } = usePost();
+  console.log(postState);
 
   return (
     <div className="explore-container">
       <LeftSide />
-      {postState?.post?.map((posts) => (
-        <div key={posts._id}>
-          <DisplayPost userPost={posts} />
-        </div>
-      ))}
+      <div className="display_explorepost">
+        {postState?.post?.map((post) => (
+          <div key={post._id}>
+            <DisplayPost userPost={post} />
+          </div>
+        ))}
+      </div>
+
       <RightSide />
     </div>
   );

@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
+import { avatar1, avatar2 } from "../../assets/data";
 
 /**
  * Posts can be added here.
@@ -14,6 +15,7 @@ export const posts = [
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
+      avatarUrl: avatar1,
     },
     username: "adarshbalika",
     Image:
@@ -24,6 +26,7 @@ export const posts = [
   {
     _id: uuid(),
     content: "hello world",
+    avatarUrl: avatar2,
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -38,6 +41,7 @@ export const posts = [
   {
     _id: uuid(),
     content: "hello tom and jerry",
+    avatarUrl: avatar2,
     likes: {
       likeCount: 0,
       likedBy: [],

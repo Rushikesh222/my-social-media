@@ -7,11 +7,8 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModel }) => {
   //   lastName: userObj?.lastName,
   // });
   const [userData, setUserData] = useState(userObj);
-  console.log(userData, userObj);
   const { editProfileData } = useUser();
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    console.log(e);
     setUserData((userData) => ({
       ...userData,
       [e.target.name]: e.target.value,
@@ -19,7 +16,7 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModel }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(userData);
+    setShowEditModal(false);
     editProfileData(userData);
   };
 

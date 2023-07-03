@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const localStorageToken = JSON.parse(localStorage.getItem("loginDetails"));
   const [token, setToken] = useState(localStorageToken?.token);
-  const [currentUser, setCurrentUser] = useState(localStorageToken?.users);
+  const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
 
   const signupHandler = async (username, password, firstname, lastName) => {
     try {

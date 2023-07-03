@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
-import { avatar1, avatar2 } from "../../assets/data";
+import { avatar1, avatar2, avatar3 } from "../../assets/data";
 
 /**
  * User Database can be added here.
@@ -30,11 +30,11 @@ export const users = [
   },
   {
     _id: uuid(),
-    firstName: "Rushikesh",
+    firstName: "Aniket",
     lastName: "shirsat",
-    username: "Rushikesh",
+    username: "Aniket",
     password: "Rushikesh123",
-    avatarUrl: avatar2,
+    avatarUrl: avatar3,
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

@@ -27,55 +27,58 @@ export function SignUp() {
   };
 
   return (
-    <div className="signup-contianer">
-      <img className="signup-logo" src={logo} alt="logo" />
-      <div className="signup-contianer-form">
-        <h1>SignUp</h1>
-        <form className="signup-form" onSubmit={handleCreateAccount}>
-          <label>
-            username:
-            <input
-              className="sign-username"
-              placeholder="Enter UserName"
-              type="text"
-              onChange={handleusername}
-            />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input
-              className="sign-password"
-              placeholder="Enter Password"
-              type="text"
-              onChange={handlePassword}
-            />
-          </label>
-          <br />
-          <label>
-            First Name:
-            <input
-              className="sign-firstname"
-              placeholder="Enter FirstName"
-              type="text"
-              onChange={handleFirstname}
-            />
-          </label>
-          <br />
-          <label>
-            lastName:
-            <input
-              className="sign-lastname"
-              placeholder="Enter LastName"
-              type="text"
-              onChange={handleLastname}
-            />
-          </label>
-          <br />
-          <button className="sign-create-button" type="submit">
-            create new Account
-          </button>
-        </form>
+    <div className="signup-details">
+      <div className="signup-contianer">
+        <img
+          className="signup-logo"
+          src="https://stuff.co.za/wp-content/uploads/2021/09/Twitter.png"
+          alt="logo"
+        />
+        <div className="signup-contianer-form">
+          <i className="fab fa-twitter"></i>
+          <h1>SignUp</h1>
+          <form className="signup-form" onSubmit={handleCreateAccount}>
+            <label>
+              Username
+              <input
+                className="sign-username"
+                type="text"
+                onChange={handleusername}
+              />
+            </label>
+            <br />
+            <label>
+              Password
+              <input
+                className="sign-password"
+                type="password"
+                onChange={handlePassword}
+              />
+            </label>
+            <br />
+            <label>
+              First Name
+              <input
+                className="sign-firstname"
+                type="text"
+                onChange={handleFirstname}
+              />
+            </label>
+            <br />
+            <label>
+              lastName
+              <input
+                className="sign-lastname"
+                type="text"
+                onChange={handleLastname}
+              />
+            </label>
+            <br />
+            <button className="signup-button" type="submit">
+              create new Account
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

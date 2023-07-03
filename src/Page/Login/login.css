@@ -1,83 +1,87 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Josefin+Sans:ital,wght@0,400;1,500&display=swap");
 
 :root {
-  --login-button: hsl(353, 99%, 62%);
-  --login-button-bg: hsl(350, 100%, 54%);
+  --twitter-color: #50b7f5;
+  --twitter-background: #e6ecf0;
 }
 
-/* * {
-  box-sizing: border-box;
-} */
-/* body {
-  background-color: #e6e9ec;
-  font-family: "Alfa Slab One", cursive;
-  font-family: "Josefin Sans", sans-serif;
+.login-container-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: hidden;
   flex-direction: column;
-  margin: 0;
-} */
-
-.login-container-form {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
 }
+
 .login-container-form {
   margin-top: 20px;
   background-color: #fff(0, 0, 0, 0.4);
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 40px 80px;
-  border-radius: 4px;
+  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  border-radius: 10px;
+  /* width: 800px; */
 }
-label {
+.login-container-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+}
+.username,
+.password {
   text-transform: capitalize;
+}
+.username:hover,
+.password:hover {
+  color: var(--twitter-color);
 }
 .login-button,
 .guest-button {
+  padding: 10px;
+  background-color: var(--twitter-color);
   cursor: pointer;
   text-decoration: none;
-  color: var(--login-button);
-  border: currentColor 0.125em solid;
+  color: var(--twitter-background);
+  border: 0.125em solid;
   margin: 5px;
   text-transform: capitalize;
   font-size: 1.8rem;
-  border-radius: 0.25em;
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), 0 0 0.45em currentColor;
-  box-shadow: inset 0 0 0.5em 0 var(--login-button) 0 0 0.5em 0
-    var(--login-button);
+  border-radius: 55px;
+  width: 300px;
 }
 .login-button:hover,
 .guest-button:hover {
-  color: var(--login-button-bg);
-  border: currentColor 0.145em solid;
+  background-color: #0f93e5;
+  color: var(--twitter-background);
+  border: 2px solid rgb(210, 208, 208);
   font-size: 2rem;
 }
 
-.login-username {
+.login-username,
+.login-password {
   outline: none;
   background-color: transparent;
   border: 0;
-  border-bottom: 2px rgb(209, 98, 98) solid;
-  display: block;
-  width: 100%;
+  border-bottom: 2px rgb(86, 211, 222) solid;
+  display: flex;
+  width: 500px;
   padding: 10px 0;
   font-size: 18px;
 }
 
-.login-password {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px rgb(209, 98, 98) solid;
-  display: block;
-  width: 100%;
-  padding: 10px 0;
-  font-size: 18px;
-  outline: none;
-}
 .Signup-link:hover {
+  text-decoration: none;
   font-size: 25px;
-  color: var(--login-button);
+  color: var(--twitter-color);
+}
+.fa-twitter {
+  font-size: 55px;
+}
+.signup-link {
+  text-decoration: none;
 }

@@ -12,7 +12,7 @@ import {
 
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const { token, setCurrentUser, currentUser } = useAuthContext();
+  const { token, setCurrentUser } = useAuthContext();
   const [userState, userDispatch] = useReducer(userReducer, []);
   const [userLoading, setUserLoading] = useState(false);
   // console.log(token, currentUser);
@@ -56,7 +56,6 @@ export const UserProvider = ({ children }) => {
         headers: { authorization: token },
       });
       if (status === 200 || status === 201) {
-        console.log(data);
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.followUser });
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
       }
@@ -79,7 +78,6 @@ export const UserProvider = ({ children }) => {
       if (status === 201 || status === 200) {
         setCurrentUser(data?.user);
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
-        console.log(data, "log");
       }
     } catch (error) {
       console.error(error);

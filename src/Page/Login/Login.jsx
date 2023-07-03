@@ -24,13 +24,13 @@ export const Login = () => {
   return (
     <div className="login-container-body">
       <div className="login-container-form">
-        <img src={logo} alt="logo" />
+        <i className="fab fa-twitter"></i>
+        <h1 className="login-title"> Login into twitter</h1>
         <form onSubmit={handleSubmit}>
-          <label>
-            username:
+          <label className="username">
+            username
             <input
               className="login-username"
-              placeholder="Enter Username"
               type="text"
               onChange={(e) =>
                 setUserLoginDetails({
@@ -40,12 +40,11 @@ export const Login = () => {
               }
             />
           </label>
-          <br />
-          <label>
-            Password:
+
+          <label className="password">
+            Password
             <input
               className="login-password"
-              placeholder="Enter Password"
               type="password"
               onChange={(e) =>
                 setUserLoginDetails({
@@ -55,7 +54,7 @@ export const Login = () => {
               }
             />
           </label>
-          <br />
+
           <button type="submit" className="login-button">
             Login
           </button>
@@ -72,7 +71,7 @@ export const Login = () => {
         </form>
         <a>
           Create your Account?
-          <NavLink to="/signup">
+          <NavLink className="signup-link" to="/signup">
             <a className="Signup-link">Signup</a>
           </NavLink>
         </a>

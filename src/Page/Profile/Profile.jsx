@@ -47,7 +47,7 @@ export const Profile = () => {
 
   const isFollowed = (username) => {
     userState
-      ?.find((user) => user._Id === username)
+      ?.find((user) => user.username === username)
       ?.followers.some((user) => user._id === currentUser?._id);
   };
 

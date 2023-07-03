@@ -51,16 +51,17 @@ export const RightSide = () => {
                         </span>
                       </h3>
                     </div>
-
-                    {isFollowed(user?._id) ? (
-                      <button onClick={() => unfollowerUser(user?._id)}>
-                        Following
-                      </button>
-                    ) : (
-                      <button onClick={() => followerUser(user?._id)}>
-                        Follow
-                      </button>
-                    )}
+                    <div className="follow_button">
+                      {isFollowed(user?._id) ? (
+                        <button onClick={() => unfollowerUser(user?._id)}>
+                          Following
+                        </button>
+                      ) : (
+                        <button onClick={() => followerUser(user?._id)}>
+                          Follow
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               ) : null}

@@ -34,12 +34,16 @@
   margin-right: auto;
   margin-left: 40px;
   margin-bottom: 15px;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 .Rightside_buttonFollow {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
+
   /* border: 2px solid chartreuse; */
 }
 /* .Rightside_body {
@@ -51,4 +55,17 @@
   padding: 10px;
   border-radius: 12px;
   background-color: rgb(190, 186, 186);
+}
+.follow_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.Rightside-follower {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }

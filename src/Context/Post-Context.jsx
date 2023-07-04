@@ -15,6 +15,7 @@ export const PostProvider = ({ children }) => {
     postLoading: false,
     post: [],
     userPost: [],
+    sortBy: "latest",
   };
   const [postState, postDispatch] = useReducer(postReducer, initialState);
   const { token } = useAuthContext();

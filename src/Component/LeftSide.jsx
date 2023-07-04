@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/Authcontext";
 import "./Leftside.css";
 export const LeftSide = () => {
-  const { currentUser } = useAuthContext();
+  const { currentUser, handleUserLogout } = useAuthContext();
   console.log(currentUser?.username);
   const navigate = useNavigate();
   return (
@@ -36,7 +36,12 @@ export const LeftSide = () => {
         <span class="material-symbols-outlined">person</span>
         <h2>Profile</h2>
       </div>
-
+      <NavLink onClick={() => handleUserLogout()} className="nav-link" to="/">
+        <div className="sidebarOption ">
+          <span class="material-symbols-outlined">logout</span>
+          <h2>LogOut</h2>
+        </div>
+      </NavLink>
       <button class="sidebar_tweet">Tweet</button>
     </div>
   );

@@ -1,0 +1,44 @@
+.filterpost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.trending-button,
+.latest-button {
+  align-items: center;
+  appearance: none;
+  background-color: rgb(252, 252, 253);
+  border-radius: 4px;
+  border-width: 0px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0px 2px 4px,
+    rgba(45, 35, 66, 0.3) 0px 7px 13px -3px,
+    rgb(214, 214, 231) 0px -3px 0px inset;
+  box-sizing: border-box;
+  color: rgb(54, 57, 90);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease 0s, transform 0.15s ease 0s;
+  user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 1rem;
+  margin-right: 180px;
+}
+.trending-button:hover,
+.latest-button:hover {
+  border: 0.125em solid var(--twitter-color);
+  font-weight: 700;
+}

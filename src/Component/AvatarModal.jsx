@@ -11,6 +11,7 @@ export const AvaterModal = ({
   setShowAvatarModal,
   showAvatarModal,
 }) => {
+  console.log(userData, "userdata");
   const [selectedAvatar, setSelectedAvatar] = useState("");
   const { currrentUser } = useAuthContext();
   return (

@@ -9,12 +9,18 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
   //   lastName: userObj?.lastName,
   // });
   const [showAvatarModal, setShowAvatarModal] = useState(false);
-  const [userData, setUserData] = useState(userObj);
+  const [userData, setUserData] = useState({
+    firstName: userObj?.firstName,
+    lastName: userObj?.lastName,
+    avatarUrl: userObj?.avatarUrl,
+  });
+  console.log(userData);
   const { editProfileData } = useUser();
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setUserData((userData) => ({
       ...userData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
   const submitHandler = (e) => {
@@ -48,9 +54,8 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
             <div className="update-button-container">
               <button
                 className="update-button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowEditModal(true);
+                onClick={() => {
+                  setShowAvatarModal(true);
                 }}
               >
                 Update Avatar

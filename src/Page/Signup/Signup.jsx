@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "../../Context/Authcontext";
 import "./Signup.css";
-import { logo } from "../../assets/data";
 export function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

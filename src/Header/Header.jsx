@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../Context/Authcontext";
-import { logo } from "../assets/data";
+
 import "./Header.css";
 
 export function Header() {
@@ -8,7 +8,7 @@ export function Header() {
   return (
     <div className="header-container">
       <div className="header-container-logo">
-        <img className="header-logo" src={logo} alt="logo" />
+        <img className="header-logo" src={""} alt="logo" />
       </div>
 
       <div className="header-nav-bar">

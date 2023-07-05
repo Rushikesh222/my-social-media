@@ -7,7 +7,7 @@ import {
 } from "react";
 import { useAuthContext } from "../Context/Authcontext";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { postReducer } from "../Reducer/post-reducer";
 const PostContext = createContext();
 export const PostProvider = ({ children }) => {
@@ -120,7 +120,6 @@ export const PostProvider = ({ children }) => {
   };
   const editPostData = async (postId, postData) => {
     try {
-      postDispatch({ type: "POST_LOADING", payload: true });
       const { data, status } = await axios({
         method: "POST",
         url: `api/posts/edit/${postId}`,
@@ -132,8 +131,8 @@ export const PostProvider = ({ children }) => {
 
       if (status === 201 || status === 200) {
         console.log(data);
-        postDispatch({ type: "USER_POST", payload: data?.posts });
-        postDispatch({ type: "POST_LOADING", payload: false });
+        postDispatch({ type: "GET_POST", payload: data?.posts });
+        toast.success("Post edited successfully!");
       }
     } catch (error) {
       console.error(error);
@@ -160,6 +159,7 @@ export const PostProvider = ({ children }) => {
         postText,
         setPostText,
         editPostData,
+        postDispatch,
       }}
     >
       {children}

@@ -71,7 +71,7 @@ export const Profile = () => {
       )}
 
       {userData?.username === currentUser?.username ? (
-        <button>check</button>
+        <p></p>
       ) : isFollowed(userData?._id) ? (
         <button onClick={() => unfollowerUser(userData?._id)}>following</button>
       ) : (

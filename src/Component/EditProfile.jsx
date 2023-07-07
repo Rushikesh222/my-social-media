@@ -17,16 +17,15 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
   console.log(userData);
   const { editProfileData } = useUser();
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setUserData((userData) => ({
       ...userData,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    setShowEditModal(false);
     editProfileData(userData);
+    setShowEditModal(false);
   };
 
   return (
@@ -34,6 +33,7 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
       <h3>edit profile</h3>
       {showAvatarModal && (
         <AvaterModal
+          userData={userData}
           setUserData={setUserData}
           setShowAvatarModal={setShowAvatarModal}
           showAvatarModal={showAvatarModal}
@@ -54,7 +54,8 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
             <div className="update-button-container">
               <button
                 className="update-button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setShowAvatarModal(true);
                 }}
               >

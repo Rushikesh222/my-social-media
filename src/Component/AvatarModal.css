@@ -1,8 +1,66 @@
-.avatar-container {
-  width: 600px;
-  height: 600px;
+.avtar-display-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 .avatar-image img {
-  width: 500px;
-  height: 500px;
+  border: 3px solid white;
+  border-radius: 60%;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+.avatar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  max-width: fit-content;
+}
+.avatar-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  height: 250px;
+  margin: 10px;
+  padding: 15px;
+  gap: 15px;
+  border-radius: 30%;
+  background-color: rgb(174, 176, 175);
+
+  /* flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+  border: 2px solid white;
+}
+
+.close-avatar {
+  justify-content: end;
+  font-size: 40px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.close-avatar:hover {
+  cursor: pointer;
+  color: white;
+}
+.avatar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-button {
+  background-color: var(--twitter-color);
+  color: white;
+  font-weight: 900;
+  border-radius: 30px;
+  width: 80px;
+  height: 40px;
+  margin-top: 20px;
+  border: 2px solid white;
+  cursor: pointer;
 }

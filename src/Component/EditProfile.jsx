@@ -4,17 +4,13 @@ import { AvaterModal } from "./AvatarModal";
 import { Modal } from "@mui/material";
 import "./ProfileEdit.css";
 export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
-  // const [userValue, setUserValue] = useState({
-  //   firstName: userObj?.firstName,
-  //   lastName: userObj?.lastName,
-  // });
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [userData, setUserData] = useState({
     firstName: userObj?.firstName,
     lastName: userObj?.lastName,
     avatarUrl: userObj?.avatarUrl,
   });
-  console.log(userData);
+
   const { editProfileData } = useUser();
   const handleChange = (e) => {
     setUserData((userData) => ({
@@ -93,7 +89,7 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
               />
             </div>
 
-            <button className="profile-submit" type="submit">
+            <button className="profile-submit" value="Save" type="submit">
               Submit
             </button>
             <button

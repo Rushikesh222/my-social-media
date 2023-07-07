@@ -24,6 +24,7 @@ export const Profile = () => {
   const [showEditModal, setShowEditModal] = useState(() =>
     userData?.username === userState?.username ? true : false
   );
+  // console.log(userData);
 
   const getUserDetails = async () => {
     try {
@@ -43,13 +44,16 @@ export const Profile = () => {
   };
   useEffect(() => {
     getUserDetails();
-  }, [username, userState]);
+  }, [username, userState, postState?.post]);
+  // console.log(userState);
+  // console.log(currentUser._id);
 
-  const isFollowed = (username) => {
+  // const findUser = state.users.find((user) => user._id === userId);
+  // const isFollowed = findUser?._id === currentUser?._id;
+  const isFollowed = (userId) =>
     userState
-      ?.find((user) => user.username === username)
-      ?.followers.some((user) => user._id === currentUser?._id);
-  };
+      ?.find((user) => user._id === userId)
+      ?.followers.some((user) => user?._id === currentUser?._id);
 
   return (
     <div className="profile-container">
@@ -71,11 +75,19 @@ export const Profile = () => {
       )}
 
       {userData?.username === currentUser?.username ? (
-        <p></p>
-      ) : isFollowed(userData?._id) ? (
-        <button onClick={() => unfollowerUser(userData?._id)}>following</button>
+        <button
+          onClick={() => setShowData(!showData)}
+          className="profile-editbutton"
+        >
+          Edit Profile
+        </button>
       ) : (
-        <button onClick={() => followerUser(userData?._id)}>follow</button>
+        <p>check</p>
+      )}
+      {isFollowed(userData?._id) ? (
+        <button onClick={() => unfollowerUser(userData?._id)}>Following</button>
+      ) : (
+        <button onClick={() => followerUser(userData?._id)}>Follow</button>
       )}
 
       <p>
@@ -119,7 +131,7 @@ export const Profile = () => {
           {userData?.following?.length === 1 ? " Following" : " Followings"}
         </p>
       </div>
-      {showEditModal ? (
+      {/* {userData?.username === currentUser?.username ? (
         <button
           onClick={() => setShowData(!showData)}
           className="profile-editbutton"
@@ -128,7 +140,7 @@ export const Profile = () => {
         </button>
       ) : (
         <p></p>
-      )}
+      )} */}
 
       {showData && (
         <EditProfile

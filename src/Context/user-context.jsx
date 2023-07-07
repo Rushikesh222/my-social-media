@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
   const { token, setCurrentUser } = useAuthContext();
   const [userState, userDispatch] = useReducer(userReducer, []);
   const [userLoading, setUserLoading] = useState(false);
-  // console.log(token, currentUser);
 
   const getUserData = async () => {
     try {
@@ -24,7 +23,7 @@ export const UserProvider = ({ children }) => {
         method: "GET",
         url: "/api/users",
       });
-      console.log(data);
+
       if (status === 200 || status === 201) {
         userDispatch({ type: "GET_USER", payload: data?.users });
         setUserLoading(false);
@@ -43,6 +42,7 @@ export const UserProvider = ({ children }) => {
       if (status === 200 || status === 201) {
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.followUser });
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
+        setCurrentUser(data?.user);
       }
     } catch (e) {
       console.error(e);
@@ -58,6 +58,7 @@ export const UserProvider = ({ children }) => {
       if (status === 200 || status === 201) {
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.followUser });
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });
+        setCurrentUser(data?.user);
       }
     } catch (e) {
       console.error(e);
@@ -74,7 +75,7 @@ export const UserProvider = ({ children }) => {
           userData,
         },
       });
-      console.log(status, data);
+
       if (status === 201 || status === 200) {
         setCurrentUser(data?.user);
         userDispatch({ type: "UPDATE_USERDATA", payload: data?.user });

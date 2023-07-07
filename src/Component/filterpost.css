@@ -4,6 +4,12 @@
   justify-content: center;
   align-items: center;
 }
+.filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
 .trending-button,
 .latest-button {
   align-items: center;
@@ -35,7 +41,6 @@
   white-space: nowrap;
   will-change: box-shadow, transform;
   font-size: 1rem;
-  margin-right: 180px;
 }
 .trending-button:hover,
 .latest-button:hover {

@@ -31,7 +31,7 @@ export const RightSide = () => {
                     getUserPost(user?.username);
                   }}
                 >
-                  <div className="Rightside_buttonFollow">
+                  <div className="Rightside_Follow">
                     <div
                       onClick={() => {
                         navigate(`/profile/${user?._id}`);

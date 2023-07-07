@@ -13,16 +13,14 @@ import { Filter } from "../../Component/FitlerPost";
 export const Home = () => {
   const { currentUser } = useAuthContext();
   const { postState } = usePost();
-  // const { userState } = useUser();
+
   console.log(postState);
 
   let userFeed = [];
-  const followFeedPost = postState?.post?.filter(({ username }) => {
-    const followUsernameArr = currentUser?.user?.following?.map(
-      ({ username }) => username
-    );
-    return followUsernameArr?.includes(username);
-  });
+  const followFeedPost = postState?.post?.filter(({ username }) =>
+    currentUser?.following?.some((item) => item.username === username)
+  );
+
   userFeed = [
     ...userFeed,
     ...followFeedPost,

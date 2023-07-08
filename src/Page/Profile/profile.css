@@ -1,8 +1,8 @@
 .profile-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
 }
 .profile-text {
   display: flex;
@@ -54,4 +54,10 @@
   font-weight: 650;
   border: 2px solid gray;
   padding: 12px;
+}
+.edit-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,6 +1,3 @@
-// import { useContext } from "react";
-// import { AuthContext } from "../../Context/Authcontext";
-import { Header } from "../../Header/Header";
 import { DisplayPost } from "../../Component/DisplayPost";
 import { usePost } from "../../Context/Post-Context";
 import { LeftSide } from "../../Component/LeftSide";

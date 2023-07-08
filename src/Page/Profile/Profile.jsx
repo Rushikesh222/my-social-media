@@ -8,6 +8,7 @@ import { DisplayPost } from "../../Component/DisplayPost";
 import { EditProfile } from "../../Component/EditProfile";
 import axios from "axios";
 import "./profile.css";
+import { LeftSide } from "../../Component/LeftSide";
 export const Profile = () => {
   const { username } = useParams();
   const { currentUser } = useAuthContext();
@@ -57,81 +58,82 @@ export const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h1 style={{ filter: showModal.show ? "blur(8px)" : "" }}>Profile</h1>
-      {dataLoading ? (
-        <h1>Profile User</h1>
-      ) : (
-        <div className="profile-text">
-          {userData?.avatarUrl ? (
-            <img src={userData?.avatarUrl} alt="avatar" />
-          ) : (
-            <div>{currentUser?.user?.firstName?.slice(0, 1)}</div>
-          )}
-          <div className="profile-infotext">
-            <h1>{`${userData?.firstName} ${userData?.lastName}`}</h1>
-            <p>@{`${userData?.username}`}</p>
+      <LeftSide />
+      <div className="display-profile">
+        <h1 style={{ filter: showModal.show ? "blur(8px)" : "" }}>Profile</h1>
+        {dataLoading ? (
+          <h1>Profile User</h1>
+        ) : (
+          <div className="profile-text">
+            {userData?.avatarUrl ? (
+              <img src={userData?.avatarUrl} alt="avatar" />
+            ) : (
+              <div>{currentUser?.user?.firstName?.slice(0, 1)}</div>
+            )}
+            <div className="profile-infotext">
+              <h1>{`${userData?.firstName} ${userData?.lastName}`}</h1>
+              <p>@{`${userData?.username}`}</p>
+            </div>
           </div>
+        )}
+        <div className="edit-button">
+          {userData?.username === currentUser?.username ? (
+            <button
+              onClick={() => setShowData(!showData)}
+              className="profile-editbutton"
+            >
+              Edit Profile
+            </button>
+          ) : isFollowed(userData?._id) ? (
+            <button onClick={() => unfollowerUser(userData?._id)}>
+              Following
+            </button>
+          ) : (
+            <button onClick={() => followerUser(userData?._id)}>Follow</button>
+          )}
+
+          <p>
+            {`${new Date(userData?.createdAt)
+              .toDateString()
+              .split(" ")
+              .slice(1, 4)
+              .join(" ")}`}
+          </p>
         </div>
-      )}
+        <div className="profile-contact">
+          <p>
+            {" "}
+            <h3>{postState?.userPost?.length}</h3>
+            {postState?.userPost?.length === 1 ? "Post" : "Posts"}
+          </p>
+          <p
+            onClick={() =>
+              setShowModal((showModal) => ({
+                ...showModal,
+                show: true,
+                type: "Followers",
+              }))
+            }
+          >
+            <h3>{userData?.followers?.length}</h3>
 
-      {userData?.username === currentUser?.username ? (
-        <button
-          onClick={() => setShowData(!showData)}
-          className="profile-editbutton"
-        >
-          Edit Profile
-        </button>
-      ) : (
-        <p>check</p>
-      )}
-      {isFollowed(userData?._id) ? (
-        <button onClick={() => unfollowerUser(userData?._id)}>Following</button>
-      ) : (
-        <button onClick={() => followerUser(userData?._id)}>Follow</button>
-      )}
+            {userData?.followers?.length === 1 ? "follower" : "followers"}
+          </p>
+          <p
+            onClick={() =>
+              setShowModal((showModal) => ({
+                ...showModal,
+                show: true,
+                type: "Following",
+              }))
+            }
+          >
+            <h3>{userData?.following?.length}</h3>
 
-      <p>
-        {`${new Date(userData?.createdAt)
-          .toDateString()
-          .split(" ")
-          .slice(1, 4)
-          .join(" ")}`}
-      </p>
-
-      <div className="profile-contact">
-        <p>
-          {" "}
-          <h3>{postState?.userPost?.length}</h3>
-          {postState?.userPost?.length === 1 ? "Post" : "Posts"}
-        </p>
-        <p
-          onClick={() =>
-            setShowModal((showModal) => ({
-              ...showModal,
-              show: true,
-              type: "Followers",
-            }))
-          }
-        >
-          <h3>{userData?.followers?.length}</h3>
-
-          {userData?.followers?.length === 1 ? "follower" : "followers"}
-        </p>
-        <p
-          onClick={() =>
-            setShowModal((showModal) => ({
-              ...showModal,
-              show: true,
-              type: "Following",
-            }))
-          }
-        >
-          <h3>{userData?.following?.length}</h3>
-
-          {userData?.following?.length === 1 ? " Following" : " Followings"}
-        </p>
-      </div>
-      {/* {userData?.username === currentUser?.username ? (
+            {userData?.following?.length === 1 ? " Following" : " Followings"}
+          </p>
+        </div>
+        {/* {userData?.username === currentUser?.username ? (
         <button
           onClick={() => setShowData(!showData)}
           className="profile-editbutton"
@@ -142,21 +144,22 @@ export const Profile = () => {
         <p></p>
       )} */}
 
-      {showData && (
-        <EditProfile
-          userObj={userData}
-          setShowEditModal={setShowEditModal}
-          showEditModal={showEditModal}
-        />
-      )}
+        {showData && (
+          <EditProfile
+            userObj={userData}
+            setShowEditModal={setShowEditModal}
+            showEditModal={showEditModal}
+          />
+        )}
 
-      <hr />
+        <hr />
 
-      {postState?.userPost?.map((post) => (
-        <div>
-          <DisplayPost userPost={post} />
-        </div>
-      ))}
+        {postState?.userPost?.map((post) => (
+          <div>
+            <DisplayPost userPost={post} />
+          </div>
+        ))}
+      </div>
       <RightSide />
     </div>
   );

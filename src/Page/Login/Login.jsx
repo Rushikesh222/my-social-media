@@ -2,7 +2,6 @@ import "./login.css";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/Authcontext";
-import { logo } from "../../assets/data";
 
 export const Login = () => {
   const { loginHandler, token } = useAuthContext();
@@ -11,8 +10,8 @@ export const Login = () => {
     password: "",
   });
   const guestUserLoginDetails = {
-    username: "adarshbalika",
-    password: "adarshBalika123",
+    username: "Rushikesh",
+    password: "Rushikesh123",
   };
   const navigate = useNavigate();
 

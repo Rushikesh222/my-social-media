@@ -9,6 +9,8 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
     firstName: userObj?.firstName,
     lastName: userObj?.lastName,
     avatarUrl: userObj?.avatarUrl,
+    Bio: userObj?.Bio,
+    Website: userObj?.Website,
   });
 
   const { editProfileData } = useUser();
@@ -26,7 +28,6 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
 
   return (
     <div className="editprofile-contianer">
-      <h3>edit profile</h3>
       {showAvatarModal && (
         <AvaterModal
           userData={userData}
@@ -84,6 +85,20 @@ export const EditProfile = ({ userObj, setShowEditModal, showEditModal }) => {
               <input
                 value={userData?.lastName}
                 name="lastName"
+                onChange={handleChange}
+                className="editprofile-lastname"
+              />
+              <label>Bio</label>
+              <input
+                value={userData?.Bio}
+                name="Bio"
+                onChange={handleChange}
+                className="editprofile-firstname"
+              />
+              <label>Website</label>
+              <input
+                value={userData?.Website}
+                name="Website"
                 onChange={handleChange}
                 className="editprofile-lastname"
               />

@@ -24,6 +24,8 @@ export const users = [
     lastName: "shirsat",
     username: "Rushikesh",
     password: "Rushikesh123",
+    Website: "https://rushiecho.netlify.app/",
+    Bio: "I am Web Developer and A part of neogcamp 2023",
     avatarUrl: avatar2,
     createdAt: formatDate(),
     updatedAt: formatDate(),

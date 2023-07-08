@@ -46,11 +46,7 @@ export const Profile = () => {
   useEffect(() => {
     getUserDetails();
   }, [username, userState, postState?.post]);
-  // console.log(userState);
-  // console.log(currentUser._id);
 
-  // const findUser = state.users.find((user) => user._id === userId);
-  // const isFollowed = findUser?._id === currentUser?._id;
   const isFollowed = (userId) =>
     userState
       ?.find((user) => user._id === userId)
@@ -78,27 +74,35 @@ export const Profile = () => {
         )}
         <div className="edit-button">
           {userData?.username === currentUser?.username ? (
-            <button
-              onClick={() => setShowData(!showData)}
-              className="profile-editbutton"
-            >
-              Edit Profile
-            </button>
+            <div className="button-details">
+              <button
+                onClick={() => setShowData(!showData)}
+                className="profile-editbutton"
+              >
+                Edit Profile
+              </button>
+              <p className="Bio">
+                <strong>Bio: </strong>
+
+                {userData?.Bio}
+              </p>
+              <p className="Website">{userData?.Website}</p>
+            </div>
           ) : isFollowed(userData?._id) ? (
-            <button onClick={() => unfollowerUser(userData?._id)}>
+            <button
+              className="follow-button"
+              onClick={() => unfollowerUser(userData?._id)}
+            >
               Following
             </button>
           ) : (
-            <button onClick={() => followerUser(userData?._id)}>Follow</button>
+            <button
+              className="follow-button"
+              onClick={() => followerUser(userData?._id)}
+            >
+              Follow
+            </button>
           )}
-
-          <p>
-            {`${new Date(userData?.createdAt)
-              .toDateString()
-              .split(" ")
-              .slice(1, 4)
-              .join(" ")}`}
-          </p>
         </div>
         <div className="profile-contact">
           <p>
@@ -133,16 +137,6 @@ export const Profile = () => {
             {userData?.following?.length === 1 ? " Following" : " Followings"}
           </p>
         </div>
-        {/* {userData?.username === currentUser?.username ? (
-        <button
-          onClick={() => setShowData(!showData)}
-          className="profile-editbutton"
-        >
-          Edit Profile
-        </button>
-      ) : (
-        <p></p>
-      )} */}
 
         {showData && (
           <EditProfile

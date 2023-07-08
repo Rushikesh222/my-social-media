@@ -27,22 +27,43 @@ export const LeftSide = () => {
         </div>
       </NavLink>
 
-      <div
-        className="sidebarOption "
-        onClick={() => {
-          navigate(`/profile/${currentUser?.username}`);
-        }}
-      >
-        <span class="material-symbols-outlined">person</span>
-        <h2>Profile</h2>
-      </div>
       <NavLink onClick={() => handleUserLogout()} className="nav-link" to="/">
         <div className="sidebarOption ">
           <span class="material-symbols-outlined">logout</span>
           <h2>LogOut</h2>
         </div>
       </NavLink>
-      <button class="sidebar_tweet">Tweet</button>
+      <div
+        onClick={() => {
+          navigate(`/profile/${currentUser?.username}`);
+        }}
+        className="proflie"
+      >
+        <div className="leftside-profile">
+          <div
+            onClick={() => {
+              navigate(`/profile/${currentUser?.username}`);
+            }}
+            className="Rightside_avatar"
+          >
+            <img src={currentUser?.avatarUrl} alt="avatar" />
+          </div>
+          <div
+            onClick={() => {
+              navigate(`/profile/${currentUser?.username}`);
+            }}
+            className="Rightside_headerText"
+          >
+            <h3>{`${currentUser?.firstName}`}</h3>
+            <span className="display_headerSpecial">
+              <span class="material-symbols-outlined Rightside_badge">
+                verified
+              </span>
+              @{currentUser?.username}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

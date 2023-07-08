@@ -55,9 +55,45 @@
   border: 2px solid gray;
   padding: 12px;
 }
-.edit-button {
+.follow-button {
+  background-color: white;
+  border: 1px solid var(--twitter-color);
+  color: var(--twitter-color);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 30px;
+  width: 100px;
+  height: 40px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: auto;
+}
+.follow-button:hover {
+  border: 2px solid var(--twitter-color);
+  font-weight: 900;
+}
+.edit-button,
+.button-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.Website {
+  font-size: 20px;
+  margin: 10px;
+  padding: 5px;
+  font-weight: 500;
+}
+.Bio {
+  font-size: 25px;
+  font-weight: 800;
+  color: gray;
+}
+strong {
+  color: black;
+}
+.Website:hover {
+  cursor: pointer;
+  color: blue;
 }

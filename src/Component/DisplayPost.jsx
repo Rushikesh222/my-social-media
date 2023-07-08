@@ -60,7 +60,12 @@ export const DisplayPost = ({ userPost }) => {
                   alt="avatar"
                 />
               </div>
-              <h3>
+
+              <h3
+                onClick={() => {
+                  navigate(`/profile/${userDetails?.username}`);
+                }}
+              >
                 {`${userDetails?.firstName}${userDetails?.lastName}`}
                 <span className="display_headerSpecial">
                   <span class="material-symbols-outlined display_badge">

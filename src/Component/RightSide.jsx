@@ -34,13 +34,18 @@ export const RightSide = () => {
                   <div className="Rightside_Follow">
                     <div
                       onClick={() => {
-                        navigate(`/profile/${user?._id}`);
+                        navigate(`/profile/${user?.username}`);
                       }}
                       className="Rightside_avatar"
                     >
                       <img src={user?.avatarUrl} alt="avatar" />
                     </div>
-                    <div className="Rightside_headerText">
+                    <div
+                      onClick={() => {
+                        navigate(`/profile/${user?.username}`);
+                      }}
+                      className="Rightside_headerText"
+                    >
                       <h3>
                         {`${user?.firstName}`}
                         <span className="display_headerSpecial">

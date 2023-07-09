@@ -116,7 +116,10 @@ export const DisplayPost = ({ userPost }) => {
                 <p></p>
               )}
             </div>
-            <div className="display_HeaderDescription">
+            <div
+              onClick={() => navigate(`/details/${_id}`)}
+              className="display_HeaderDescription"
+            >
               <p>{content}</p>
             </div>
           </div>

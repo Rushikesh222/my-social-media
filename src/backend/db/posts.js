@@ -12,7 +12,7 @@ export const posts = [
     _id: uuid(),
     content: " repellat.",
     likes: {
-      likeCount: 0,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
       avatarUrl: avatar1,
@@ -28,7 +28,7 @@ export const posts = [
     content: "hello world",
     avatarUrl: avatar2,
     likes: {
-      likeCount: 0,
+      likeCount: 12,
       likedBy: [],
       dislikedBy: [],
     },
@@ -43,7 +43,7 @@ export const posts = [
     content: "Get ready for Chandrayaan-3 on 14-July-2023",
     avatarUrl: avatar2,
     likes: {
-      likeCount: 0,
+      likeCount: 22,
       likedBy: [],
       dislikedBy: [],
     },
@@ -58,7 +58,7 @@ export const posts = [
     content: "hello tom and jerry",
     avatarUrl: avatar2,
     likes: {
-      likeCount: 0,
+      likeCount: 20,
       likedBy: [],
       dislikedBy: [],
     },

@@ -56,7 +56,6 @@ export const Profile = () => {
     <div className="profile-container">
       <LeftSide />
       <div className="display-profile">
-        <h1 style={{ filter: showModal.show ? "blur(8px)" : "" }}>Profile</h1>
         {dataLoading ? (
           <h1>Profile User</h1>
         ) : (

@@ -40,4 +40,26 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    firstName: "Shubham",
+    lastName: "Naik",
+    username: "Shubham",
+    password: "Shubham123",
+    avatarUrl:
+      "https://res.cloudinary.com/dzicjioey/image/upload/v1688463806/Images/qaklfpoc9jbegcwxpizd.jpg",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    firstName: "Jayesh",
+    lastName: "Patil",
+    username: "Jayesh",
+    password: "Jayesh123",
+    avatarUrl:
+      "https://res.cloudinary.com/dzicjioey/image/upload/v1688463345/Images/fqw7zpo1ewwxco9hzltu.jpg",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

@@ -81,11 +81,7 @@ export const Profile = () => {
               >
                 Edit Profile
               </button>
-              <p className="Bio">
-                <strong>Bio: </strong>
-
-                {userData?.Bio}
-              </p>
+              <p className="Bio">{userData?.Bio}</p>
               <p className="Website">{userData?.Website}</p>
             </div>
           ) : isFollowed(userData?._id) ? (

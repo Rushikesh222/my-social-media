@@ -40,6 +40,21 @@ export const posts = [
   },
   {
     _id: uuid(),
+    content: "Get ready for Chandrayaan-3 on 14-July-2023",
+    avatarUrl: avatar2,
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Rushikesh",
+    Image:
+      "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/lvm-3_launch_a-sixteen_nine.jpg?VersionId=BoptKMb4yTmRNmoOkiZpE5iaX3hrMZ7y&size=690:388",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
     content: "hello tom and jerry",
     avatarUrl: avatar2,
     likes: {

@@ -22,6 +22,7 @@ export const NewPost = () => {
             onClick={(e) => {
               e.preventDefault();
               createPost(postText);
+              setPostText("");
             }}
           >
             Tweet

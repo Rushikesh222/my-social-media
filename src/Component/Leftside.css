@@ -39,13 +39,18 @@
   text-decoration: none;
 }
 .sidebar {
+  height: 95vh;
   border-right: 1px solid var(--twitter-background);
-  flex: 0.2;
+  display: flex;
+  flex-direction: column;
   min-width: 300px;
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   width: 400px;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
 }
 .fa-twitter {
   color: var(--twitter-color);
@@ -68,9 +73,6 @@
   margin-bottom: 5px;
 }
 .proflie {
-  top: 70%;
-  position: absolute;
-  overflow: hidden;
 }
 .proflie:hover {
   background-color: rgb(174, 172, 172);

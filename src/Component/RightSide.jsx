@@ -15,9 +15,6 @@ export const RightSide = () => {
       ?.followers.some((user) => user._id === currentUser?._id);
   return (
     <div className="Rightside-block">
-      <div className="Rightside-header">
-        <h1>Suggestion for you</h1>
-      </div>
       <div className="profile-body">
         {userLoading ? (
           <h2>Something</h2>

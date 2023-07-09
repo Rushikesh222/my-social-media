@@ -72,8 +72,7 @@
   font-size: 15px;
   margin-bottom: 5px;
 }
-.proflie {
-}
+
 .proflie:hover {
   background-color: rgb(174, 172, 172);
   border: 2px solid var(--twitter-color);

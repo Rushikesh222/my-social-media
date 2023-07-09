@@ -3,10 +3,14 @@ import { useUser } from "../Context/user-context";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/Authcontext";
 import "./Rightside.css";
+import { useState } from "react";
+import { SearchModal } from "./SearchModal";
 
 export const RightSide = () => {
   const { getUserPost } = usePost();
   const { userState, unfollowerUser, followerUser, userLoading } = useUser();
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [searchInput, setsearchInput] = useState("");
   const { currentUser } = useAuthContext();
   const navigate = useNavigate();
   const isFollowed = (userId) =>
@@ -15,6 +19,26 @@ export const RightSide = () => {
       ?.followers.some((user) => user._id === currentUser?._id);
   return (
     <div className="Rightside-block">
+      <div className="Search-bar" onClick={() => setShowSearchModal(true)}>
+        <i className="fa-solid fa-magnifying-glass "></i>
+        <input
+          className="search-input"
+          placeholder="Search User"
+          value={searchInput}
+          onChange={(e) => {
+            setsearchInput(e.target.value);
+          }}
+        />
+      </div>
+      <div className="display-search">
+        {showSearchModal && (
+          <SearchModal
+            searchInput={searchInput}
+            setShowSearchModal={setShowSearchModal}
+          />
+        )}
+      </div>
+
       <div className="profile-body">
         {userLoading ? (
           <h2>Something</h2>

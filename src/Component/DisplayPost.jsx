@@ -79,38 +79,42 @@ export const DisplayPost = ({ userPost }) => {
                     .join(" ")}`}</p>
                 </span>
               </h3>
-              <div className="more_option">
-                <div
-                  style={
-                    showOption
-                      ? { visibility: "visible" }
-                      : { visibility: "hidden" }
-                  }
-                  className="option-frame"
-                >
-                  <div className="info">
-                    {usePost ? (
-                      <DeletePost
-                        deletePost={() => {
-                          deletePost(_id);
-                        }}
-                      />
-                    ) : null}
-                  </div>
+              {currentUser?.username === username ? (
+                <div className="more_option">
                   <div
-                    onClick={() => setShowEditPost(!showEditPost)}
-                    className="info"
+                    style={
+                      showOption
+                        ? { visibility: "visible" }
+                        : { visibility: "hidden" }
+                    }
+                    className="option-frame"
                   >
-                    Edit
+                    <div className="info">
+                      {usePost ? (
+                        <DeletePost
+                          deletePost={() => {
+                            deletePost(_id);
+                          }}
+                        />
+                      ) : null}
+                    </div>
+                    <div
+                      onClick={() => setShowEditPost(!showEditPost)}
+                      className="info"
+                    >
+                      Edit
+                    </div>
                   </div>
+                  <span
+                    onClick={() => setShowOption(!showOption)}
+                    class="material-symbols-outlined post-option"
+                  >
+                    more_vert
+                  </span>
                 </div>
-                <span
-                  onClick={() => setShowOption(!showOption)}
-                  class="material-symbols-outlined post-option"
-                >
-                  more_vert
-                </span>
-              </div>
+              ) : (
+                <p></p>
+              )}
             </div>
             <div className="display_HeaderDescription">
               <p>{content}</p>

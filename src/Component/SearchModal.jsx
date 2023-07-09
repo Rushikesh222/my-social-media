@@ -23,7 +23,6 @@ export const SearchModal = ({ searchInput, setShowSearchModal }) => {
         {searchInput?.length > 0 && (
           <div>{filteredUser?.length === 0 && <h1>No Users Found</h1>}</div>
         )}
-        {searchInput?.length === 0 && <h1>No Users Found</h1>}
       </div>
       <div>
         {filteredUser?.length > 0 && (

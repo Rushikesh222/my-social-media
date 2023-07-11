@@ -13,7 +13,6 @@ export const Login = () => {
     username: "Rushikesh",
     password: "Rushikesh123",
   };
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -30,7 +30,7 @@ export function SignUp() {
       <div className="signup-contianer">
         <img
           className="signup-logo"
-          src="https://stuff.co.za/wp-content/uploads/2021/09/Twitter.png"
+          src="https://cdn.pixabay.com/photo/2016/11/01/12/09/twitter-logo-1788039_1280.jpg"
           alt="logo"
         />
         <div className="signup-contianer-form">
